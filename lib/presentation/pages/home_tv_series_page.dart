@@ -1,23 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_tv_series_app/common/constants.dart';
-import 'package:flutter_tv_series_app/domain/entities/movie.dart';
 import 'package:flutter_tv_series_app/domain/entities/tv_series.dart';
 import 'package:flutter_tv_series_app/presentation/pages/about_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/home_movie_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/movie_detail_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/popular_movies_page.dart';
+import 'package:flutter_tv_series_app/presentation/pages/popular_tv_series_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/search_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/top_rated_movies_page.dart';
+import 'package:flutter_tv_series_app/presentation/pages/top_rated_tv_series_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/tv_series_detail_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/watchlist_movies_page.dart';
-import 'package:flutter_tv_series_app/presentation/provider/movie_list_notifier.dart';
 import 'package:flutter_tv_series_app/common/state_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tv_series_app/presentation/provider/tv_series_list_notifier.dart';
 import 'package:provider/provider.dart';
 
 class HomeTvSeriesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/home-tv';
+  static const ROUTE_NAME = '/home-tv-series';
 
   const HomeTvSeriesPage({super.key});
 
@@ -61,14 +58,21 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
             ),
             ListTile(
               leading: Icon(Icons.tv),
-              title: Text('TV Series'),
+              title: Text('Tv Series'),
               onTap: () {
                 Navigator.pushNamed(context, HomeTvSeriesPage.ROUTE_NAME);
               },
             ),
             ListTile(
               leading: Icon(Icons.save_alt),
-              title: Text('Watchlist'),
+              title: Text('Watchlist Movies'),
+              onTap: () {
+                Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.save_alt),
+              title: Text('Watchlist Tv Series'),
               onTap: () {
                 Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
               },
@@ -115,8 +119,10 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
               ),
               _buildSubHeading(
                 title: 'Popular',
-                onTap: () =>
-                    Navigator.pushNamed(context, PopularMoviesPage.ROUTE_NAME),
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  PopularTvSeriesPage.ROUTE_NAME,
+                ),
               ),
               Consumer<TvSeriesListNotifier>(
                 builder: (context, data, child) {
@@ -132,8 +138,10 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
               ),
               _buildSubHeading(
                 title: 'Top Rated',
-                onTap: () =>
-                    Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  TopRatedTvSeriesPage.ROUTE_NAME,
+                ),
               ),
               Consumer<TvSeriesListNotifier>(
                 builder: (context, data, child) {
