@@ -1,11 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_tv_series_app/common/constants.dart';
 import 'package:flutter_tv_series_app/domain/entities/genre.dart';
-import 'package:flutter_tv_series_app/domain/entities/movie.dart';
-import 'package:flutter_tv_series_app/domain/entities/movie_detail.dart';
 import 'package:flutter_tv_series_app/domain/entities/tv_series.dart';
 import 'package:flutter_tv_series_app/domain/entities/tv_series_detail.dart';
-import 'package:flutter_tv_series_app/presentation/provider/movie_detail_notifier.dart';
 import 'package:flutter_tv_series_app/common/state_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
