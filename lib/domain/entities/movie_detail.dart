@@ -1,4 +1,4 @@
-import 'package:ditonton/domain/entities/genre.dart';
+import 'package:flutter_tv_series_app/domain/entities/genre.dart';
 import 'package:equatable/equatable.dart';
 
 class MovieDetail extends Equatable {
@@ -32,16 +32,16 @@ class MovieDetail extends Equatable {
 
   @override
   List<Object?> get props => [
-        adult,
-        backdropPath,
-        genres,
-        id,
-        originalTitle,
-        overview,
-        posterPath,
-        releaseDate,
-        title,
-        voteAverage,
-        voteCount,
-      ];
+    adult,
+    backdropPath,
+    genres,
+    id,
+    originalTitle,
+    overview,
+    posterPath,
+    releaseDate,
+    title,
+    voteAverage,
+    voteCount,
+  ];
 }
