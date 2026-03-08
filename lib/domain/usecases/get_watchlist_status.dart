@@ -1,4 +1,4 @@
-import 'package:ditonton/domain/repositories/movie_repository.dart';
+import 'package:flutter_tv_series_app/domain/repositories/movie_repository.dart';
 
 class GetWatchListStatus {
   final MovieRepository repository;
