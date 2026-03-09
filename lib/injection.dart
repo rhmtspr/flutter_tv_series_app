@@ -15,11 +15,18 @@ import 'package:flutter_tv_series_app/domain/usecases/get_popular_movies.dart';
 import 'package:flutter_tv_series_app/domain/usecases/get_popular_tv_series.dart';
 import 'package:flutter_tv_series_app/domain/usecases/get_top_rated_movies.dart';
 import 'package:flutter_tv_series_app/domain/usecases/get_top_rated_tv_series.dart';
+import 'package:flutter_tv_series_app/domain/usecases/get_tv_series_detail.dart';
+import 'package:flutter_tv_series_app/domain/usecases/get_tv_series_recommendations.dart';
 import 'package:flutter_tv_series_app/domain/usecases/get_watchlist_movies.dart';
-import 'package:flutter_tv_series_app/domain/usecases/get_watchlist_status.dart';
+import 'package:flutter_tv_series_app/domain/usecases/get_watchlist_status_movie.dart';
+import 'package:flutter_tv_series_app/domain/usecases/get_watchlist_status_tv_series.dart';
+import 'package:flutter_tv_series_app/domain/usecases/get_watchlist_tv_series.dart';
 import 'package:flutter_tv_series_app/domain/usecases/remove_watchlist.dart';
-import 'package:flutter_tv_series_app/domain/usecases/save_watchlist.dart';
+import 'package:flutter_tv_series_app/domain/usecases/remove_watchlist_tv_series.dart';
+import 'package:flutter_tv_series_app/domain/usecases/save_watchlist_movies.dart';
+import 'package:flutter_tv_series_app/domain/usecases/save_watchlist_tv_series.dart';
 import 'package:flutter_tv_series_app/domain/usecases/search_movies.dart';
+import 'package:flutter_tv_series_app/domain/usecases/search_tv_series.dart';
 import 'package:flutter_tv_series_app/presentation/provider/movie_detail_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/movie_list_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/movie_search_notifier.dart';
@@ -27,8 +34,10 @@ import 'package:flutter_tv_series_app/presentation/provider/popular_movies_notif
 import 'package:flutter_tv_series_app/presentation/provider/popular_tv_series_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/top_rated_tv_series.dart';
+import 'package:flutter_tv_series_app/presentation/provider/tv_series_detail_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/tv_series_list_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/watchlist_movie_notifier.dart';
+import 'package:flutter_tv_series_app/presentation/provider/watchlist_tv_series_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 
@@ -47,9 +56,9 @@ void init() {
     () => MovieDetailNotifier(
       getMovieDetail: locator(),
       getMovieRecommendations: locator(),
-      getWatchListStatus: locator(),
-      saveWatchlist: locator(),
-      removeWatchlist: locator(),
+      getWatchListStatusMovie: locator(),
+      saveWatchlistMovie: locator(),
+      removeWatchlistMovie: locator(),
     ),
   );
   locator.registerFactory(() => MovieSearchNotifier(searchMovies: locator()));
@@ -68,9 +77,9 @@ void init() {
   locator.registerLazySingleton(() => GetMovieDetail(locator()));
   locator.registerLazySingleton(() => GetMovieRecommendations(locator()));
   locator.registerLazySingleton(() => SearchMovies(locator()));
-  locator.registerLazySingleton(() => GetWatchListStatus(locator()));
-  locator.registerLazySingleton(() => SaveWatchlist(locator()));
-  locator.registerLazySingleton(() => RemoveWatchlist(locator()));
+  locator.registerLazySingleton(() => GetWatchListStatusMovie(locator()));
+  locator.registerLazySingleton(() => SaveWatchlistMovie(locator()));
+  locator.registerLazySingleton(() => RemoveWatchlistMovie(locator()));
   locator.registerLazySingleton(() => GetWatchlistMovies(locator()));
 
   // Movie Repository
@@ -102,26 +111,36 @@ void init() {
     ),
   );
 
+  locator.registerFactory(
+    () => TvSeriesDetailNotifier(
+      getTvSeriesDetail: locator(),
+      getTvSeriesRecommendations: locator(),
+      getWatchListStatusTv: locator(),
+      saveWatchlistTv: locator(),
+      removeWatchlistTv: locator(),
+    ),
+  );
+
   // locator.registerFactory(() => MovieSearchNotifier(searchMovies: locator()));
   locator.registerFactory(() => PopularTvSeriesNotifier(locator()));
   locator.registerFactory(
     () => TopRatedTvSeriesNotifier(getTopRatedTvSeries: locator()),
   );
-  // locator.registerFactory(
-  //   () => WatchlistMovieNotifier(getWatchlistMovies: locator()),
-  // );
+  locator.registerFactory(
+    () => WatchlistTvSeriesNotifier(getWatchlistTvSeries: locator()),
+  );
 
   // Tv Series Use Cases
   locator.registerLazySingleton(() => GetNowPlayingTvSeries(locator()));
   locator.registerLazySingleton(() => GetPopularTvSeries(locator()));
   locator.registerLazySingleton(() => GetTopRatedTvSeries(locator()));
-  // locator.registerLazySingleton(() => GetTvSeriesDetail(locator()));
-  // locator.registerLazySingleton(() => GetTvSeriesRecommendations(locator()));
-  // locator.registerLazySingleton(() => SearchMovies(locator()));
-  // locator.registerLazySingleton(() => GetWatchListStatus(locator()));
-  // locator.registerLazySingleton(() => SaveWatchlist(locator()));
-  // locator.registerLazySingleton(() => RemoveWatchlist(locator()));
-  // locator.registerLazySingleton(() => GetWatchlistMovies(locator()));
+  locator.registerLazySingleton(() => GetTvSeriesDetail(locator()));
+  locator.registerLazySingleton(() => GetTvSeriesRecommendations(locator()));
+  locator.registerLazySingleton(() => SearchTvSeries(locator()));
+  locator.registerLazySingleton(() => GetWatchListStatusTv(locator()));
+  locator.registerLazySingleton(() => SaveWatchlistTv(locator()));
+  locator.registerLazySingleton(() => RemoveWatchlistTv(locator()));
+  locator.registerLazySingleton(() => GetWatchlistTvSeries(locator()));
 
   // Tv Series Repository
   locator.registerLazySingleton<TvSeriesRepository>(
