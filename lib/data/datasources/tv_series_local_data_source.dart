@@ -3,8 +3,8 @@ import 'package:flutter_tv_series_app/data/datasources/db/database_helper.dart';
 import 'package:flutter_tv_series_app/data/models/tv_series_table.dart';
 
 abstract class TvSeriesLocalDataSource {
-  Future<String> insertWatchlistTvSeries(TvSeriesTable tv);
-  Future<String> removeWatchlistTvSeries(TvSeriesTable tv);
+  Future<String> insertWatchlistTv(TvSeriesTable tv);
+  Future<String> removeWatchlistTv(TvSeriesTable tv);
   Future<TvSeriesTable?> getTvSeriesById(int id);
   Future<List<TvSeriesTable>> getWatchlistTvSeries();
 }
@@ -15,7 +15,7 @@ class TvSeriesLocalDataSourceImpl implements TvSeriesLocalDataSource {
   TvSeriesLocalDataSourceImpl({required this.databaseHelper});
 
   @override
-  Future<String> insertWatchlistTvSeries(TvSeriesTable tv) async {
+  Future<String> insertWatchlistTv(TvSeriesTable tv) async {
     try {
       await databaseHelper.insertWatchlistTv(tv);
       return 'Added to Watchlist';
@@ -25,7 +25,7 @@ class TvSeriesLocalDataSourceImpl implements TvSeriesLocalDataSource {
   }
 
   @override
-  Future<String> removeWatchlistTvSeries(TvSeriesTable tv) async {
+  Future<String> removeWatchlistTv(TvSeriesTable tv) async {
     try {
       await databaseHelper.removeWatchlistTv(tv);
       return 'Removed from Watchlist';
@@ -36,7 +36,7 @@ class TvSeriesLocalDataSourceImpl implements TvSeriesLocalDataSource {
 
   @override
   Future<TvSeriesTable?> getTvSeriesById(int id) async {
-    final result = await databaseHelper.getMovieById(id);
+    final result = await databaseHelper.getTvSeriesById(id);
     if (result != null) {
       return TvSeriesTable.fromMap(result);
     } else {
