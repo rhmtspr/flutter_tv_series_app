@@ -92,9 +92,9 @@ class MovieRepositoryImpl implements MovieRepository {
   }
 
   @override
-  Future<Either<Failure, String>> saveWatchlist(MovieDetail movie) async {
+  Future<Either<Failure, String>> saveWatchlistMovie(MovieDetail movie) async {
     try {
-      final result = await localDataSource.insertWatchlist(
+      final result = await localDataSource.insertWatchlistMovie(
         MovieTable.fromEntity(movie),
       );
       return Right(result);
@@ -106,9 +106,11 @@ class MovieRepositoryImpl implements MovieRepository {
   }
 
   @override
-  Future<Either<Failure, String>> removeWatchlist(MovieDetail movie) async {
+  Future<Either<Failure, String>> removeWatchlistMovie(
+    MovieDetail movie,
+  ) async {
     try {
-      final result = await localDataSource.removeWatchlist(
+      final result = await localDataSource.removeWatchlistMovie(
         MovieTable.fromEntity(movie),
       );
       return Right(result);
@@ -118,7 +120,7 @@ class MovieRepositoryImpl implements MovieRepository {
   }
 
   @override
-  Future<bool> isAddedToWatchlist(int id) async {
+  Future<bool> isAddedToWatchlistMovie(int id) async {
     final result = await localDataSource.getMovieById(id);
     return result != null;
   }
