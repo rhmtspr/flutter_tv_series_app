@@ -3,10 +3,10 @@ import 'package:flutter_tv_series_app/common/failure.dart';
 import 'package:flutter_tv_series_app/domain/entities/tv_series_detail.dart';
 import 'package:flutter_tv_series_app/domain/repositories/tv_series_repository.dart';
 
-class RemoveWatchlistTvSeries {
+class RemoveWatchlistTv {
   final TvSeriesRepository repository;
 
-  RemoveWatchlistTvSeries(this.repository);
+  RemoveWatchlistTv(this.repository);
 
   Future<Either<Failure, String>> execute(TvSeriesDetail tv) {
     return repository.removeWatchlistTvSeries(tv);
