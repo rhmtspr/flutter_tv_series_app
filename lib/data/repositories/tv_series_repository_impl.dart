@@ -98,7 +98,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
     TvSeriesDetail tv,
   ) async {
     try {
-      final result = await localDataSource.insertWatchlistTvSeries(
+      final result = await localDataSource.insertWatchlistTv(
         TvSeriesTable.fromEntity(tv),
       );
       return Right(result);
@@ -114,7 +114,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
     TvSeriesDetail tv,
   ) async {
     try {
-      final result = await localDataSource.removeWatchlistTvSeries(
+      final result = await localDataSource.removeWatchlistTv(
         TvSeriesTable.fromEntity(tv),
       );
       return Right(result);
