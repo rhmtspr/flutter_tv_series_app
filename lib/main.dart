@@ -6,11 +6,13 @@ import 'package:flutter_tv_series_app/presentation/pages/movie_detail_page.dart'
 import 'package:flutter_tv_series_app/presentation/pages/home_movie_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/popular_movies_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/popular_tv_series_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/search_page.dart';
+import 'package:flutter_tv_series_app/presentation/pages/search_page_movies.dart';
+import 'package:flutter_tv_series_app/presentation/pages/search_page_tv_series.dart';
 import 'package:flutter_tv_series_app/presentation/pages/top_rated_movies_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/top_rated_tv_series_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/tv_series_detail_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/watchlist_movies_page.dart';
+import 'package:flutter_tv_series_app/presentation/pages/watchlist_tv_series_page.dart';
 import 'package:flutter_tv_series_app/presentation/provider/movie_detail_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/movie_list_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/movie_search_notifier.dart';
@@ -77,7 +79,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Flutter TV Series App',
         theme: ThemeData.dark().copyWith(
           colorScheme: kColorScheme,
           primaryColor: kRichBlack,
@@ -101,8 +103,8 @@ class MyApp extends StatelessWidget {
                 builder: (_) => MovieDetailPage(id: id),
                 settings: settings,
               );
-            case SearchPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) => SearchPage());
+            case SearchPageMovies.ROUTE_NAME:
+              return CupertinoPageRoute(builder: (_) => SearchPageMovies());
             case WatchlistMoviesPage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
             case AboutPage.ROUTE_NAME:
@@ -115,6 +117,10 @@ class MyApp extends StatelessWidget {
               return CupertinoPageRoute(builder: (_) => PopularTvSeriesPage());
             case TopRatedTvSeriesPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => TopRatedTvSeriesPage());
+            case SearchPageTvSeries.ROUTE_NAME:
+              return CupertinoPageRoute(builder: (_) => SearchPageTvSeries());
+            case WatchlistTvSeriesPage.ROUTE_NAME:
+              return MaterialPageRoute(builder: (_) => WatchlistTvSeriesPage());
             case TvSeriesDetailPage.ROUTE_NAME:
               final id = settings.arguments as int;
               return MaterialPageRoute(
