@@ -1,13 +1,13 @@
 import 'package:flutter_tv_series_app/common/state_enum.dart';
-import 'package:flutter_tv_series_app/presentation/provider/popular_movies_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/popular_tv_series_notifier.dart';
-import 'package:flutter_tv_series_app/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tv_series_app/presentation/widgets/tv_series_card_list.dart';
 import 'package:provider/provider.dart';
 
 class PopularTvSeriesPage extends StatefulWidget {
   static const ROUTE_NAME = '/popular-tv-series';
+
+  const PopularTvSeriesPage({super.key});
 
   @override
   _PopularTvSeriesPageState createState() => _PopularTvSeriesPageState();
