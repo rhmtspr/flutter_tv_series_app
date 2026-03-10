@@ -4,12 +4,13 @@ import 'package:flutter_tv_series_app/domain/entities/tv_series.dart';
 import 'package:flutter_tv_series_app/presentation/pages/about_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/home_movie_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/popular_tv_series_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/search_page.dart';
+import 'package:flutter_tv_series_app/presentation/pages/search_page_tv_series.dart';
 import 'package:flutter_tv_series_app/presentation/pages/top_rated_tv_series_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/tv_series_detail_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/watchlist_movies_page.dart';
 import 'package:flutter_tv_series_app/common/state_enum.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tv_series_app/presentation/pages/watchlist_tv_series_page.dart';
 import 'package:flutter_tv_series_app/presentation/provider/tv_series_list_notifier.dart';
 import 'package:provider/provider.dart';
 
@@ -74,7 +75,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
               leading: Icon(Icons.save_alt),
               title: Text('Watchlist Tv Series'),
               onTap: () {
-                Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
+                Navigator.pushNamed(context, WatchlistTvSeriesPage.ROUTE_NAME);
               },
             ),
             ListTile(
@@ -92,7 +93,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
+              Navigator.pushNamed(context, SearchPageTvSeries.ROUTE_NAME);
             },
             icon: Icon(Icons.search),
           ),
