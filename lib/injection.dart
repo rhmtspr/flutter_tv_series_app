@@ -151,6 +151,7 @@ void init() {
     () => TvSeriesRepositoryImpl(
       remoteDataSource: locator(),
       localDataSource: locator(),
+      networkInfo: locator(),
     ),
   );
 
