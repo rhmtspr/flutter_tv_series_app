@@ -36,6 +36,7 @@ import 'package:flutter_tv_series_app/presentation/provider/top_rated_movies_not
 import 'package:flutter_tv_series_app/presentation/provider/top_rated_tv_series.dart';
 import 'package:flutter_tv_series_app/presentation/provider/tv_series_detail_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/tv_series_list_notifier.dart';
+import 'package:flutter_tv_series_app/presentation/provider/tv_series_search_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/watchlist_tv_series_notifier.dart';
 import 'package:http/http.dart' as http;
@@ -87,6 +88,7 @@ void init() {
     () => MovieRepositoryImpl(
       remoteDataSource: locator(),
       localDataSource: locator(),
+      networkInfo: locator(),
     ),
   );
 
@@ -121,7 +123,9 @@ void init() {
     ),
   );
 
-  // locator.registerFactory(() => MovieSearchNotifier(searchMovies: locator()));
+  locator.registerFactory(
+    () => TvSeriesSearchNotifier(searchTvSeries: locator()),
+  );
   locator.registerFactory(() => PopularTvSeriesNotifier(locator()));
   locator.registerFactory(
     () => TopRatedTvSeriesNotifier(getTopRatedTvSeries: locator()),
