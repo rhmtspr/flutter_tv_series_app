@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:flutter_tv_series_app/common/network_info.dart';
 import 'package:flutter_tv_series_app/data/datasources/tv_series_local_data_source.dart';
 import 'package:flutter_tv_series_app/data/datasources/tv_series_remote_data_source.dart';
 import 'package:flutter_tv_series_app/data/models/tv_series_table.dart';
@@ -13,21 +14,33 @@ import 'package:flutter_tv_series_app/common/failure.dart';
 class TvSeriesRepositoryImpl implements TvSeriesRepository {
   final TvSeriesRemoteDataSource remoteDataSource;
   final TvSeriesLocalDataSource localDataSource;
+  final NetworkInfo networkInfo;
 
   TvSeriesRepositoryImpl({
     required this.remoteDataSource,
     required this.localDataSource,
+    required this.networkInfo,
   });
 
   @override
   Future<Either<Failure, List<TvSeries>>> getNowPlayingTvSeries() async {
-    try {
-      final result = await remoteDataSource.getNowPlayingTvSeries();
-      return Right(result.map((model) => model.toEntity()).toList());
-    } on ServerException {
-      return Left(ServerFailure(''));
-    } on SocketException {
-      return Left(ConnectionFailure('Failed to connect to the network'));
+    if (await networkInfo.isConnected) {
+      try {
+        final result = await remoteDataSource.getNowPlayingTvSeries();
+        localDataSource.cacheNowPlayingTvSeries(
+          result.map((movie) => TvSeriesTable.fromDTO(movie)).toList(),
+        );
+        return Right(result.map((model) => model.toEntity()).toList());
+      } on ServerException {
+        return Left(ServerFailure(''));
+      }
+    } else {
+      try {
+        final result = await localDataSource.getCachedNowPlayingTvSeries();
+        return Right(result.map((model) => model.toEntity()).toList());
+      } on CacheException catch (e) {
+        return Left(CacheFailure(e.message));
+      }
     }
   }
 
