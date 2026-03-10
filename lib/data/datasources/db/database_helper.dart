@@ -149,7 +149,7 @@ class DatabaseHelper {
   // =================================
   // TV SERIES CRUD METHODS
   // =================================
-  Future<void> insertCacheTransactionTv(
+  Future<void> insertCacheTransactionTvSeries(
     List<TvSeriesTable> tvSeries,
     String category,
   ) async {
