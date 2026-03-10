@@ -20,6 +20,8 @@ class DatabaseHelper {
 
   static const String _tblWatchlistMovie = 'watchlist_movie';
   static const String _tblWatchlistTv = 'watchlist_tv';
+  static const String _tblCacheMovie = 'cache_movie';
+  static const String _tblCacheTv = 'cache_tv';
 
   Future<Database> _initDb() async {
     final path = await getDatabasesPath();
@@ -40,13 +42,70 @@ class DatabaseHelper {
     ''');
 
     await db.execute('''
-      CREATE TABLE  $_tblWatchlistTv (
+      CREATE TABLE  $_tblCacheMovie (
         id INTEGER PRIMARY KEY,
-        title TEXT,
+        name TEXT,
         overview TEXT,
         posterPath TEXT
       );
     ''');
+
+    await db.execute('''
+      CREATE TABLE  $_tblWatchlistTv (
+        id INTEGER PRIMARY KEY,
+        name TEXT,
+        overview TEXT,
+        posterPath TEXT,
+        category TEXT
+      );
+    ''');
+
+    await db.execute('''
+      CREATE TABLE  $_tblCacheTv (
+        id INTEGER PRIMARY KEY,
+        name TEXT,
+        overview TEXT,
+        posterPath TEXT,
+        category TEXT
+      );
+    ''');
+  }
+
+  // =================================
+  // MOVIES CRUD METHODS
+  // =================================
+  Future<void> insertCacheTransactionMovie(
+    List<MovieTable> movies,
+    String category,
+  ) async {
+    final db = await database;
+    db!.transaction((txn) async {
+      for (final movie in movies) {
+        final movieJson = movie.toJson();
+        movieJson['category'] = category;
+        txn.insert(_tblCacheMovie, movieJson);
+      }
+    });
+  }
+
+  Future<List<Map<String, dynamic>>> getCacheMovies(String category) async {
+    final db = await database;
+    final List<Map<String, dynamic>> results = await db!.query(
+      _tblCacheMovie,
+      where: 'category = ?',
+      whereArgs: [category],
+    );
+
+    return results;
+  }
+
+  Future<int> clearCacheMovies(String category) async {
+    final db = await database;
+    return await db!.delete(
+      _tblCacheMovie,
+      where: 'category = ?',
+      whereArgs: [category],
+    );
   }
 
   Future<int> insertWatchlistMovie(MovieTable movie) async {
@@ -87,7 +146,43 @@ class DatabaseHelper {
     return results;
   }
 
+  // =================================
   // TV SERIES CRUD METHODS
+  // =================================
+  Future<void> insertCacheTransactionTv(
+    List<TvSeriesTable> tvSeries,
+    String category,
+  ) async {
+    final db = await database;
+    db!.transaction((txn) async {
+      for (final tv in tvSeries) {
+        final tvJson = tv.toJson();
+        tvJson['category'] = category;
+        txn.insert(_tblCacheTv, tvJson);
+      }
+    });
+  }
+
+  Future<List<Map<String, dynamic>>> getCacheTvSeries(String category) async {
+    final db = await database;
+    final List<Map<String, dynamic>> results = await db!.query(
+      _tblCacheTv,
+      where: 'category = ?',
+      whereArgs: [category],
+    );
+
+    return results;
+  }
+
+  Future<int> clearCacheTvSeries(String category) async {
+    final db = await database;
+    return await db!.delete(
+      _tblCacheTv,
+      where: 'category = ?',
+      whereArgs: [category],
+    );
+  }
+
   Future<int> insertWatchlistTv(TvSeriesTable tv) async {
     final db = await database;
     return await db!.insert(_tblWatchlistTv, tv.toJson());
