@@ -94,7 +94,7 @@ final testMovieMap = {
 final testTvSeries = TvSeries(
   backdropPath: '/mAJ84W6I8I272Da87qplS2Dp9ST.jpg',
   firstAirDate: '2023-01-23',
-  genreIds: [14, 28],
+  genreIds: [9648, 18],
   id: 202250,
   name: 'Dirty Linen',
   originCountry: ['PH'],
