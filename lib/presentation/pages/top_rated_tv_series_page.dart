@@ -1,13 +1,13 @@
 import 'package:flutter_tv_series_app/common/state_enum.dart';
-import 'package:flutter_tv_series_app/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/top_rated_tv_series.dart';
-import 'package:flutter_tv_series_app/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tv_series_app/presentation/widgets/tv_series_card_list.dart';
 import 'package:provider/provider.dart';
 
 class TopRatedTvSeriesPage extends StatefulWidget {
   static const ROUTE_NAME = '/top-rated-tv-series';
+
+  const TopRatedTvSeriesPage({super.key});
 
   @override
   _TopRatedTvSeriesPageState createState() => _TopRatedTvSeriesPageState();
