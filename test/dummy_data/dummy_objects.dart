@@ -3,7 +3,6 @@ import 'package:flutter_tv_series_app/domain/entities/genre.dart';
 import 'package:flutter_tv_series_app/domain/entities/movie.dart';
 import 'package:flutter_tv_series_app/domain/entities/movie_detail.dart';
 import 'package:flutter_tv_series_app/data/models/tv_series_table.dart';
-import 'package:flutter_tv_series_app/domain/entities/genre.dart';
 import 'package:flutter_tv_series_app/domain/entities/tv_series.dart';
 import 'package:flutter_tv_series_app/domain/entities/tv_series_detail.dart';
 
