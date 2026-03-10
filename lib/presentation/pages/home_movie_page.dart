@@ -5,9 +5,10 @@ import 'package:flutter_tv_series_app/presentation/pages/about_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/home_tv_series_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/movie_detail_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/popular_movies_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/search_page.dart';
+import 'package:flutter_tv_series_app/presentation/pages/search_page_movies.dart';
 import 'package:flutter_tv_series_app/presentation/pages/top_rated_movies_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/watchlist_movies_page.dart';
+import 'package:flutter_tv_series_app/presentation/pages/watchlist_tv_series_page.dart';
 import 'package:flutter_tv_series_app/presentation/provider/movie_list_notifier.dart';
 import 'package:flutter_tv_series_app/common/state_enum.dart';
 import 'package:flutter/material.dart';
@@ -58,16 +59,23 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
             ),
             ListTile(
               leading: Icon(Icons.tv),
-              title: Text('TV Series'),
+              title: Text('Tv Series'),
               onTap: () {
-                Navigator.pushNamed(context, HomeTVSeriesPage.ROUTE_NAME);
+                Navigator.pushNamed(context, HomeTvSeriesPage.ROUTE_NAME);
               },
             ),
             ListTile(
               leading: Icon(Icons.save_alt),
-              title: Text('Watchlist'),
+              title: Text('Watchlist Movies'),
               onTap: () {
                 Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.save_alt),
+              title: Text('Watchlist Tv Series'),
+              onTap: () {
+                Navigator.pushNamed(context, WatchlistTvSeriesPage.ROUTE_NAME);
               },
             ),
             ListTile(
@@ -85,7 +93,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
+              Navigator.pushNamed(context, SearchPageMovies.ROUTE_NAME);
             },
             icon: Icon(Icons.search),
           ),
