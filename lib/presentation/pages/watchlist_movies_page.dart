@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 class WatchlistMoviesPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist-movie';
 
+  const WatchlistMoviesPage({super.key});
+
   @override
   _WatchlistMoviesPageState createState() => _WatchlistMoviesPageState();
 }
@@ -51,6 +53,9 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
             } else if (data.watchlistState == RequestState.Loaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
+                  print(
+                    'movie watchlist length ${data.watchlistMovies.length}',
+                  );
                   final movie = data.watchlistMovies[index];
                   return MovieCard(movie);
                 },
