@@ -1,3 +1,4 @@
+import 'package:flutter_tv_series_app/data/models/tv_series_model.dart';
 import 'package:flutter_tv_series_app/domain/entities/tv_series.dart';
 import 'package:flutter_tv_series_app/domain/entities/tv_series_detail.dart';
 import 'package:equatable/equatable.dart';
@@ -27,6 +28,13 @@ class TvSeriesTable extends Equatable {
     name: map['name'],
     posterPath: map['posterPath'],
     overview: map['overview'],
+  );
+
+  factory TvSeriesTable.fromDTO(TvSeriesModel tvSeries) => TvSeriesTable(
+    id: tvSeries.id,
+    name: tvSeries.name,
+    posterPath: tvSeries.posterPath,
+    overview: tvSeries.overview,
   );
 
   Map<String, dynamic> toJson() => {
