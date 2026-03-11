@@ -126,7 +126,7 @@ final testTvSeriesCache = TvSeriesTable(
   id: 202250,
   overview:
       'To exact vengeance, a young woman infiltrates the household of an influential family as a housemaid to expose their dirty secrets. However, love will get in the way of her revenge plot.',
-  posterPath: '/mAJ84W6I8I272Da87qplS2Dp9ST.jpg',
+  posterPath: '/aoAZgnmMzY9vVy9VWnO3U5PZENh.jpg',
   name: 'Dirty Linen',
 );
 
@@ -134,7 +134,7 @@ final testTvSeriesCacheMap = {
   'id': 202250,
   'overview':
       'To exact vengeance, a young woman infiltrates the household of an influential family as a housemaid to expose their dirty secrets. However, love will get in the way of her revenge plot.',
-  'posterPath': '/mAJ84W6I8I272Da87qplS2Dp9ST.jpg',
+  'posterPath': '/aoAZgnmMzY9vVy9VWnO3U5PZENh.jpg',
   'name': 'Dirty Linen',
 };
 
@@ -142,7 +142,7 @@ final testTvSeriesFromCache = TvSeries.watchlist(
   id: 202250,
   overview:
       'To exact vengeance, a young woman infiltrates the household of an influential family as a housemaid to expose their dirty secrets. However, love will get in the way of her revenge plot.',
-  posterPath: '/mAJ84W6I8I272Da87qplS2Dp9ST.jpg',
+  posterPath: '/aoAZgnmMzY9vVy9VWnO3U5PZENh.jpg',
   name: 'Dirty Linen',
 );
 
