@@ -5,7 +5,7 @@ import 'package:flutter_tv_series_app/presentation/widgets/tv_series_card_list.d
 import 'package:provider/provider.dart';
 
 class PopularTvSeriesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/popular-tv-series';
+  static const routeName = '/popular-tv-series';
 
   const PopularTvSeriesPage({super.key});
 
@@ -21,14 +21,14 @@ class _PopularTvSeriesPageState extends State<PopularTvSeriesPage> {
       () => Provider.of<PopularTvSeriesNotifier>(
         context,
         listen: false,
-      ).fetchPopularMovies(),
+      ).fetchPopularTvSeries(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Popular Movies')),
+      appBar: AppBar(title: Text('Popular TV Series')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer<PopularTvSeriesNotifier>(
