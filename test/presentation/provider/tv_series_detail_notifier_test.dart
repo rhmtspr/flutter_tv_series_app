@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_tv_series_app/domain/entities/movie.dart';
 import 'package:flutter_tv_series_app/common/failure.dart';
 import 'package:flutter_tv_series_app/domain/entities/tv_series.dart';
 import 'package:flutter_tv_series_app/domain/usecases/get_tv_series_detail.dart';
@@ -54,17 +53,17 @@ void main() {
   final tId = 1;
 
   final tTvSeries = TvSeries(
-    adult: false,
     backdropPath: 'backdropPath',
+    firstAirDate: 'firstAirDate',
     genreIds: [1, 2, 3],
     id: 1,
-    originalTitle: 'originalTitle',
+    name: 'name',
+    originCountry: ['originCountry'],
+    originalLanguage: 'originalLanguage',
+    originalName: 'originalName',
     overview: 'overview',
     popularity: 1,
     posterPath: 'posterPath',
-    releaseDate: 'releaseDate',
-    title: 'title',
-    video: false,
     voteAverage: 1,
     voteCount: 1,
   );
