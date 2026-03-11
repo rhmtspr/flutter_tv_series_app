@@ -2,7 +2,7 @@ import 'package:flutter_tv_series_app/domain/entities/genre.dart';
 import 'package:equatable/equatable.dart';
 
 class TvSeriesDetail extends Equatable {
-  TvSeriesDetail({
+  const TvSeriesDetail({
     required this.adult,
     required this.backdropPath,
     required this.genres,
