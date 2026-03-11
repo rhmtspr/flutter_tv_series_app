@@ -5,7 +5,7 @@ import 'package:flutter_tv_series_app/domain/usecases/get_movie_recommendations.
 import 'package:flutter_tv_series_app/common/state_enum.dart';
 import 'package:flutter_tv_series_app/domain/usecases/get_watchlist_status_movie.dart';
 import 'package:flutter_tv_series_app/domain/usecases/remove_watchlist.dart';
-import 'package:flutter_tv_series_app/domain/usecases/save_watchlist_movies.dart';
+import 'package:flutter_tv_series_app/domain/usecases/save_watchlist_movie.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
