@@ -1,3 +1,4 @@
+import 'package:flutter_tv_series_app/common/network_info.dart';
 import 'package:flutter_tv_series_app/data/datasources/db/database_helper.dart';
 import 'package:flutter_tv_series_app/data/datasources/movie_local_data_source.dart';
 import 'package:flutter_tv_series_app/data/datasources/movie_remote_data_source.dart';
@@ -41,6 +42,7 @@ import 'package:flutter_tv_series_app/presentation/provider/watchlist_movie_noti
 import 'package:flutter_tv_series_app/presentation/provider/watchlist_tv_series_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
+import 'package:data_connection_checker/data_connection_checker.dart';
 
 final locator = GetIt.instance;
 
@@ -166,6 +168,10 @@ void init() {
   // helper
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
+  // network info
+  locator.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(locator()));
+
   // external
   locator.registerLazySingleton(() => http.Client());
+  locator.registerLazySingleton(() => DataConnectionChecker());
 }
