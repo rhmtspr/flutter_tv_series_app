@@ -9,7 +9,7 @@ class MovieTable extends Equatable {
   final String? posterPath;
   final String? overview;
 
-  MovieTable({
+  const MovieTable({
     required this.id,
     required this.title,
     required this.posterPath,
@@ -52,6 +52,5 @@ class MovieTable extends Equatable {
   );
 
   @override
-  // TODO: implement props
   List<Object?> get props => [id, title, posterPath, overview];
 }
