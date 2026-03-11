@@ -44,9 +44,10 @@ class DatabaseHelper {
     await db.execute('''
       CREATE TABLE  $_tblCacheMovie (
         id INTEGER PRIMARY KEY,
-        name TEXT,
+        title TEXT,
         overview TEXT,
-        posterPath TEXT
+        posterPath TEXT,
+        category TEXT
       );
     ''');
 
