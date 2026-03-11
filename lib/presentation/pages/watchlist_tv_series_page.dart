@@ -6,7 +6,7 @@ import 'package:flutter_tv_series_app/presentation/widgets/tv_series_card_list.d
 import 'package:provider/provider.dart';
 
 class WatchlistTvSeriesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/watchlist-tv-series';
+  static const routeName = '/watchlist-tv-series';
 
   const WatchlistTvSeriesPage({super.key});
 
@@ -33,6 +33,7 @@ class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage>
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
+  @override
   void didPopNext() {
     Provider.of<WatchlistTvSeriesNotifier>(
       context,
@@ -53,8 +54,6 @@ class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage>
             } else if (data.watchlistState == RequestState.Loaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  print('data ${data.watchlistTvSeries}');
-                  print('data length ${data.watchlistTvSeries.length}');
                   final tv = data.watchlistTvSeries[index];
                   return TvSeriesCard(tv);
                 },
