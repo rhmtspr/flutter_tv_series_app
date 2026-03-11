@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/watchlist-movie';
+  static const routeName = '/watchlist-movie';
 
   const WatchlistMoviesPage({super.key});
 
@@ -33,6 +33,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
+  @override
   void didPopNext() {
     Provider.of<WatchlistMovieNotifier>(
       context,
@@ -53,9 +54,6 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
             } else if (data.watchlistState == RequestState.Loaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  print(
-                    'movie watchlist length ${data.watchlistMovies.length}',
-                  );
                   final movie = data.watchlistMovies[index];
                   return MovieCard(movie);
                 },
