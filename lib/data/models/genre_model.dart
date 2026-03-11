@@ -2,7 +2,7 @@ import 'package:flutter_tv_series_app/domain/entities/genre.dart';
 import 'package:equatable/equatable.dart';
 
 class GenreModel extends Equatable {
-  GenreModel({required this.id, required this.name});
+  const GenreModel({required this.id, required this.name});
 
   final int id;
   final String name;
@@ -13,7 +13,7 @@ class GenreModel extends Equatable {
   Map<String, dynamic> toJson() => {"id": id, "name": name};
 
   Genre toEntity() {
-    return Genre(id: this.id, name: this.name);
+    return Genre(id: id, name: name);
   }
 
   @override
