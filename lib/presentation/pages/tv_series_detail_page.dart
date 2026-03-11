@@ -10,7 +10,7 @@ import 'package:flutter_tv_series_app/presentation/provider/tv_series_detail_not
 import 'package:provider/provider.dart';
 
 class TvSeriesDetailPage extends StatefulWidget {
-  static const ROUTE_NAME = '/detail-tv-series';
+  static const routeName = '/detail-tv-series';
 
   final int id;
   const TvSeriesDetailPage({super.key, required this.id});
@@ -48,7 +48,7 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
               child: DetailContent(
                 tv,
                 provider.tvSeriesRecommendations,
-                provider.isAddedToWatchlist,
+                provider.isAddedToWatchlistTvSeries,
               ),
             );
           } else {
@@ -122,7 +122,7 @@ class DetailContent extends StatelessWidget {
                                     Provider.of<TvSeriesDetailNotifier>(
                                       context,
                                       listen: false,
-                                    ).watchlistMessage;
+                                    ).watchlistMessageTvSeries;
 
                                 if (message ==
                                         TvSeriesDetailNotifier
@@ -198,7 +198,7 @@ class DetailContent extends StatelessWidget {
                                             onTap: () {
                                               Navigator.pushReplacementNamed(
                                                 context,
-                                                TvSeriesDetailPage.ROUTE_NAME,
+                                                TvSeriesDetailPage.routeName,
                                                 arguments: tv.id,
                                               );
                                             },
