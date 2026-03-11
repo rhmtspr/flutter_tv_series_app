@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SearchPageMovies extends StatelessWidget {
-  static const ROUTE_NAME = '/search-movies';
+  static const routeName = '/search-movies';
+
+  const SearchPageMovies({super.key});
 
   @override
   Widget build(BuildContext context) {
