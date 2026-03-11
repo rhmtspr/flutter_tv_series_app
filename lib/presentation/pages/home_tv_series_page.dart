@@ -15,7 +15,7 @@ import 'package:flutter_tv_series_app/presentation/provider/tv_series_list_notif
 import 'package:provider/provider.dart';
 
 class HomeTvSeriesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/home-tv-series';
+  static const routeName = '/home-tv-series';
 
   const HomeTvSeriesPage({super.key});
 
@@ -54,33 +54,33 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
               leading: Icon(Icons.movie),
               title: Text('Movies'),
               onTap: () {
-                Navigator.pushNamed(context, HomeMoviePage.ROUTE_NAME);
+                Navigator.pushNamed(context, HomeMoviePage.routeName);
               },
             ),
             ListTile(
               leading: Icon(Icons.tv),
               title: Text('Tv Series'),
               onTap: () {
-                Navigator.pushNamed(context, HomeTvSeriesPage.ROUTE_NAME);
+                Navigator.pushNamed(context, HomeTvSeriesPage.routeName);
               },
             ),
             ListTile(
               leading: Icon(Icons.save_alt),
               title: Text('Watchlist Movies'),
               onTap: () {
-                Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
+                Navigator.pushNamed(context, WatchlistMoviesPage.routeName);
               },
             ),
             ListTile(
               leading: Icon(Icons.save_alt),
               title: Text('Watchlist Tv Series'),
               onTap: () {
-                Navigator.pushNamed(context, WatchlistTvSeriesPage.ROUTE_NAME);
+                Navigator.pushNamed(context, WatchlistTvSeriesPage.routeName);
               },
             ),
             ListTile(
               onTap: () {
-                Navigator.pushNamed(context, AboutPage.ROUTE_NAME);
+                Navigator.pushNamed(context, AboutPage.routeName);
               },
               leading: Icon(Icons.info_outline),
               title: Text('About'),
@@ -93,7 +93,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, SearchPageTvSeries.ROUTE_NAME);
+              Navigator.pushNamed(context, SearchPageTvSeries.routeName);
             },
             icon: Icon(Icons.search),
           ),
@@ -108,7 +108,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
               Text('Now Playing', style: kHeading6),
               Consumer<TvSeriesListNotifier>(
                 builder: (context, data, child) {
-                  final state = data.nowPlayingState;
+                  final state = data.nowPlayingStateTvSeries;
                   if (state == RequestState.Loading) {
                     return Center(child: CircularProgressIndicator());
                   } else if (state == RequestState.Loaded) {
@@ -120,10 +120,8 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
               ),
               _buildSubHeading(
                 title: 'Popular',
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  PopularTvSeriesPage.ROUTE_NAME,
-                ),
+                onTap: () =>
+                    Navigator.pushNamed(context, PopularTvSeriesPage.routeName),
               ),
               Consumer<TvSeriesListNotifier>(
                 builder: (context, data, child) {
@@ -141,7 +139,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
                 title: 'Top Rated',
                 onTap: () => Navigator.pushNamed(
                   context,
-                  TopRatedTvSeriesPage.ROUTE_NAME,
+                  TopRatedTvSeriesPage.routeName,
                 ),
               ),
               Consumer<TvSeriesListNotifier>(
@@ -201,14 +199,14 @@ class TvSeriesList extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  TvSeriesDetailPage.ROUTE_NAME,
+                  TvSeriesDetailPage.routeName,
                   arguments: tv.id,
                 );
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(16)),
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${tv.posterPath}',
+                  imageUrl: '$baseImageUrl${tv.posterPath}',
                   placeholder: (context, url) =>
                       Center(child: CircularProgressIndicator()),
                   errorWidget: (context, url, error) => Icon(Icons.error),
