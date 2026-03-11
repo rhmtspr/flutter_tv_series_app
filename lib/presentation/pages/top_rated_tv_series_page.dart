@@ -5,7 +5,7 @@ import 'package:flutter_tv_series_app/presentation/widgets/tv_series_card_list.d
 import 'package:provider/provider.dart';
 
 class TopRatedTvSeriesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/top-rated-tv-series';
+  static const routeName = '/top-rated-tv-series';
 
   const TopRatedTvSeriesPage({super.key});
 
@@ -28,7 +28,7 @@ class _TopRatedTvSeriesPageState extends State<TopRatedTvSeriesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Top Rated Movies')),
+      appBar: AppBar(title: Text('Top Rated TV Series')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer<TopRatedTvSeriesNotifier>(
