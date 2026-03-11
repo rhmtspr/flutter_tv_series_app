@@ -23,7 +23,7 @@ import 'package:flutter_tv_series_app/domain/usecases/get_watchlist_status_tv_se
 import 'package:flutter_tv_series_app/domain/usecases/get_watchlist_tv_series.dart';
 import 'package:flutter_tv_series_app/domain/usecases/remove_watchlist.dart';
 import 'package:flutter_tv_series_app/domain/usecases/remove_watchlist_tv_series.dart';
-import 'package:flutter_tv_series_app/domain/usecases/save_watchlist_movies.dart';
+import 'package:flutter_tv_series_app/domain/usecases/save_watchlist_movie.dart';
 import 'package:flutter_tv_series_app/domain/usecases/save_watchlist_tv_series.dart';
 import 'package:flutter_tv_series_app/domain/usecases/search_movies.dart';
 import 'package:flutter_tv_series_app/domain/usecases/search_tv_series.dart';
