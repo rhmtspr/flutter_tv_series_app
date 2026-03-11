@@ -1,13 +1,12 @@
 import 'package:flutter_tv_series_app/common/constants.dart';
 import 'package:flutter_tv_series_app/common/state_enum.dart';
-import 'package:flutter_tv_series_app/presentation/provider/movie_search_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/tv_series_search_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tv_series_app/presentation/widgets/tv_series_card_list.dart';
 import 'package:provider/provider.dart';
 
 class SearchPageTvSeries extends StatelessWidget {
-  static const ROUTE_NAME = '/search-tv-series';
+  static const routeName = '/search-tv-series';
 
   const SearchPageTvSeries({super.key});
 
@@ -22,10 +21,10 @@ class SearchPageTvSeries extends StatelessWidget {
           children: [
             TextField(
               onSubmitted: (query) {
-                Provider.of<MovieSearchNotifier>(
+                Provider.of<TvSeriesSearchNotifier>(
                   context,
                   listen: false,
-                ).fetchMovieSearch(query);
+                ).fetchTvSeriesSearch(query);
               },
               decoration: InputDecoration(
                 hintText: 'Search title',
