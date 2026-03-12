@@ -15,7 +15,7 @@ void main() {
     dataSource = MovieLocalDataSourceImpl(databaseHelper: mockDatabaseHelper);
   });
 
-  group('save watchlist', () {
+  group('save watchlist movies', () {
     test(
       'should return success message when insert to database is success',
       () async {
@@ -45,7 +45,7 @@ void main() {
     );
   });
 
-  group('remove watchlist', () {
+  group('remove watchlist movies', () {
     test(
       'should return success message when remove from database is success',
       () async {
