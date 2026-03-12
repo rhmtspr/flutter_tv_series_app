@@ -11,10 +11,10 @@ class WatchlistTvSeriesPage extends StatefulWidget {
   const WatchlistTvSeriesPage({super.key});
 
   @override
-  _WatchlistTvSeriesPageState createState() => _WatchlistTvSeriesPageState();
+  WatchlistTvSeriesPageState createState() => WatchlistTvSeriesPageState();
 }
 
-class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage>
+class WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage>
     with RouteAware {
   @override
   void initState() {
@@ -49,9 +49,9 @@ class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage>
         padding: const EdgeInsets.all(8.0),
         child: Consumer<WatchlistTvSeriesNotifier>(
           builder: (context, data, child) {
-            if (data.watchlistState == RequestState.Loading) {
+            if (data.watchlistState == RequestState.loadingState) {
               return Center(child: CircularProgressIndicator());
-            } else if (data.watchlistState == RequestState.Loaded) {
+            } else if (data.watchlistState == RequestState.loadedState) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final tv = data.watchlistTvSeries[index];
