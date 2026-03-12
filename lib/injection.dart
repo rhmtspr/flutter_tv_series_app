@@ -28,6 +28,7 @@ import 'package:flutter_tv_series_app/domain/usecases/save_watchlist_movie.dart'
 import 'package:flutter_tv_series_app/domain/usecases/save_watchlist_tv_series.dart';
 import 'package:flutter_tv_series_app/domain/usecases/search_movies.dart';
 import 'package:flutter_tv_series_app/domain/usecases/search_tv_series.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/search_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/provider/movie_detail_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/movie_list_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/movie_search_notifier.dart';
@@ -64,7 +65,7 @@ void init() {
       removeWatchlistMovie: locator(),
     ),
   );
-  locator.registerFactory(() => MovieSearchNotifier(searchMovies: locator()));
+  // locator.registerFactory(() => MovieSearchNotifier(searchMovies: locator()));
   locator.registerFactory(() => PopularMoviesNotifier(locator()));
   locator.registerFactory(
     () => TopRatedMoviesNotifier(getTopRatedMovies: locator()),
@@ -72,6 +73,8 @@ void init() {
   locator.registerFactory(
     () => WatchlistMovieNotifier(getWatchlistMovies: locator()),
   );
+
+  locator.registerFactory(() => SearchMoviesBloc(locator()));
 
   // Movies Use Cases
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));
