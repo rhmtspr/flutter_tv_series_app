@@ -9,19 +9,19 @@ class TvSeriesListNotifier extends ChangeNotifier {
   var _nowPlayingTvSeries = <TvSeries>[];
   List<TvSeries> get nowPlayingTvSeries => _nowPlayingTvSeries;
 
-  RequestState _nowPlayingState = RequestState.Empty;
-  RequestState get nowPlayingState => _nowPlayingState;
+  RequestState _nowPlayingStateTvSeries = RequestState.emptyState;
+  RequestState get nowPlayingStateTvSeries => _nowPlayingStateTvSeries;
 
   var _popularTvSeries = <TvSeries>[];
   List<TvSeries> get popularTvSeries => _popularTvSeries;
 
-  RequestState _popularTvSeriesState = RequestState.Empty;
+  RequestState _popularTvSeriesState = RequestState.emptyState;
   RequestState get popularTvSeriesState => _popularTvSeriesState;
 
   var _topRatedTvSeries = <TvSeries>[];
   List<TvSeries> get topRatedTvSeries => _topRatedTvSeries;
 
-  RequestState _topRatedTvSeriesState = RequestState.Empty;
+  RequestState _topRatedTvSeriesState = RequestState.emptyState;
   RequestState get topRatedTvSeriesState => _topRatedTvSeriesState;
 
   String _message = '';
@@ -38,18 +38,18 @@ class TvSeriesListNotifier extends ChangeNotifier {
   final GetTopRatedTvSeries getTopRatedTvSeries;
 
   Future<void> fetchNowPlayingTvSeries() async {
-    _nowPlayingState = RequestState.Loading;
+    _nowPlayingStateTvSeries = RequestState.loadingState;
     notifyListeners();
 
     final result = await getNowPlayingTvSeries.execute();
     result.fold(
       (failure) {
-        _nowPlayingState = RequestState.Error;
+        _nowPlayingStateTvSeries = RequestState.errorState;
         _message = failure.message;
         notifyListeners();
       },
       (tvSeriesData) {
-        _nowPlayingState = RequestState.Loaded;
+        _nowPlayingStateTvSeries = RequestState.loadedState;
         _nowPlayingTvSeries = tvSeriesData;
         notifyListeners();
       },
@@ -57,18 +57,18 @@ class TvSeriesListNotifier extends ChangeNotifier {
   }
 
   Future<void> fetchPopularTvSeries() async {
-    _popularTvSeriesState = RequestState.Loading;
+    _popularTvSeriesState = RequestState.loadingState;
     notifyListeners();
 
     final result = await getPopularTvSeries.execute();
     result.fold(
       (failure) {
-        _popularTvSeriesState = RequestState.Error;
+        _popularTvSeriesState = RequestState.errorState;
         _message = failure.message;
         notifyListeners();
       },
       (tvSeriesData) {
-        _popularTvSeriesState = RequestState.Loaded;
+        _popularTvSeriesState = RequestState.loadedState;
         _popularTvSeries = tvSeriesData;
         notifyListeners();
       },
@@ -76,18 +76,18 @@ class TvSeriesListNotifier extends ChangeNotifier {
   }
 
   Future<void> fetchTopRatedTvSeries() async {
-    _topRatedTvSeriesState = RequestState.Loading;
+    _topRatedTvSeriesState = RequestState.loadingState;
     notifyListeners();
 
     final result = await getTopRatedTvSeries.execute();
     result.fold(
       (failure) {
-        _topRatedTvSeriesState = RequestState.Error;
+        _topRatedTvSeriesState = RequestState.errorState;
         _message = failure.message;
         notifyListeners();
       },
       (tvSeriesData) {
-        _topRatedTvSeriesState = RequestState.Loaded;
+        _topRatedTvSeriesState = RequestState.loadedState;
         _topRatedTvSeries = tvSeriesData;
         notifyListeners();
       },
