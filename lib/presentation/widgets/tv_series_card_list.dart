@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_tv_series_app/common/constants.dart';
 import 'package:flutter_tv_series_app/domain/entities/tv_series.dart';
-import 'package:flutter_tv_series_app/presentation/pages/movie_detail_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tv_series_app/presentation/pages/tv_series_detail_page.dart';
 
 class TvSeriesCard extends StatelessWidget {
   final TvSeries tvSeries;
@@ -17,7 +17,7 @@ class TvSeriesCard extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(
             context,
-            MovieDetailPage.ROUTE_NAME,
+            TvSeriesDetailPage.routeName,
             arguments: tvSeries.id,
           );
         },
@@ -55,7 +55,7 @@ class TvSeriesCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(8)),
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${tvSeries.posterPath}',
+                  imageUrl: '$baseImageUrl${tvSeries.posterPath}',
                   width: 80,
                   placeholder: (context, url) =>
                       Center(child: CircularProgressIndicator()),
