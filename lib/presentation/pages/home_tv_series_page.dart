@@ -20,10 +20,10 @@ class HomeTvSeriesPage extends StatefulWidget {
   const HomeTvSeriesPage({super.key});
 
   @override
-  _HomeTvSeriesPageState createState() => _HomeTvSeriesPageState();
+  HomeTvSeriesPageState createState() => HomeTvSeriesPageState();
 }
 
-class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
+class HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
   @override
   void initState() {
     super.initState();
@@ -109,9 +109,9 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
               Consumer<TvSeriesListNotifier>(
                 builder: (context, data, child) {
                   final state = data.nowPlayingStateTvSeries;
-                  if (state == RequestState.Loading) {
+                  if (state == RequestState.loadingState) {
                     return Center(child: CircularProgressIndicator());
-                  } else if (state == RequestState.Loaded) {
+                  } else if (state == RequestState.loadedState) {
                     return TvSeriesList(data.nowPlayingTvSeries);
                   } else {
                     return Text('Failed');
@@ -126,9 +126,9 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
               Consumer<TvSeriesListNotifier>(
                 builder: (context, data, child) {
                   final state = data.popularTvSeriesState;
-                  if (state == RequestState.Loading) {
+                  if (state == RequestState.loadingState) {
                     return Center(child: CircularProgressIndicator());
-                  } else if (state == RequestState.Loaded) {
+                  } else if (state == RequestState.loadedState) {
                     return TvSeriesList(data.popularTvSeries);
                   } else {
                     return Text('Failed');
@@ -145,9 +145,9 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
               Consumer<TvSeriesListNotifier>(
                 builder: (context, data, child) {
                   final state = data.topRatedTvSeriesState;
-                  if (state == RequestState.Loading) {
+                  if (state == RequestState.loadingState) {
                     return Center(child: CircularProgressIndicator());
-                  } else if (state == RequestState.Loaded) {
+                  } else if (state == RequestState.loadedState) {
                     return TvSeriesList(data.topRatedTvSeries);
                   } else {
                     return Text('Failed');
