@@ -1,1 +1,1 @@
-enum RequestState { Empty, Loading, Loaded, Error }
+enum RequestState { emptyState, loadingState, loadedState, errorState }
