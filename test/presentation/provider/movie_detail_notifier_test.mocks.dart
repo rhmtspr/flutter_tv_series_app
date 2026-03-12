@@ -104,7 +104,7 @@ class MockGetMovieRecommendations extends _i1.Mock
           as _i2.MovieRepository);
 
   @override
-  _i5.Future<_i3.Either<_i6.Failure, List<_i9.Movie>>> execute(dynamic id) =>
+  _i5.Future<_i3.Either<_i6.Failure, List<_i9.Movie>>> execute(int? id) =>
       (super.noSuchMethod(
             Invocation.method(#execute, [id]),
             returnValue:

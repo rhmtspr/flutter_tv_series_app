@@ -69,7 +69,7 @@ void main() {
   );
   final tTvSeriesList = <TvSeries>[tTvSeries];
 
-  void _arrangeUsecase() {
+  void arrangeUsecase() {
     when(
       mockGetTvSeriesDetail.execute(tId),
     ).thenAnswer((_) async => Right(testTvSeriesDetail));
@@ -81,7 +81,7 @@ void main() {
   group('Get Movie Detail', () {
     test('should get data from the usecase', () async {
       // arrange
-      _arrangeUsecase();
+      arrangeUsecase();
       // act
       await provider.fetchTvSeriesDetail(tId);
       // assert
@@ -91,21 +91,21 @@ void main() {
 
     test('should change state to Loading when usecase is called', () {
       // arrange
-      _arrangeUsecase();
+      arrangeUsecase();
       // act
       provider.fetchTvSeriesDetail(tId);
       // assert
-      expect(provider.tvState, RequestState.Loading);
+      expect(provider.tvState, RequestState.loadingState);
       expect(listenerCallCount, 1);
     });
 
     test('should change movie when data is gotten successfully', () async {
       // arrange
-      _arrangeUsecase();
+      arrangeUsecase();
       // act
       await provider.fetchTvSeriesDetail(tId);
       // assert
-      expect(provider.tvState, RequestState.Loaded);
+      expect(provider.tvState, RequestState.loadedState);
       expect(provider.tv, testTvSeriesDetail);
       expect(listenerCallCount, 3);
     });
@@ -114,11 +114,11 @@ void main() {
       'should change recommendation movies when data is gotten successfully',
       () async {
         // arrange
-        _arrangeUsecase();
+        arrangeUsecase();
         // act
         await provider.fetchTvSeriesDetail(tId);
         // assert
-        expect(provider.tvState, RequestState.Loaded);
+        expect(provider.tvState, RequestState.loadedState);
         expect(provider.tvSeriesRecommendations, tTvSeriesList);
       },
     );
@@ -127,7 +127,7 @@ void main() {
   group('Get Movie Recommendations', () {
     test('should get data from the usecase', () async {
       // arrange
-      _arrangeUsecase();
+      arrangeUsecase();
       // act
       await provider.fetchTvSeriesDetail(tId);
       // assert
@@ -139,11 +139,11 @@ void main() {
       'should update recommendation state when data is gotten successfully',
       () async {
         // arrange
-        _arrangeUsecase();
+        arrangeUsecase();
         // act
         await provider.fetchTvSeriesDetail(tId);
         // assert
-        expect(provider.tvSeriesRecommendationState, RequestState.Loaded);
+        expect(provider.tvSeriesRecommendationState, RequestState.loadedState);
         expect(provider.tvSeriesRecommendations, tTvSeriesList);
       },
     );
@@ -159,7 +159,7 @@ void main() {
       // act
       await provider.fetchTvSeriesDetail(tId);
       // assert
-      expect(provider.tvSeriesRecommendationState, RequestState.Error);
+      expect(provider.tvSeriesRecommendationState, RequestState.errorState);
       expect(provider.message, 'Failed');
     });
   });
@@ -171,7 +171,7 @@ void main() {
       // act
       await provider.loadWatchlistStatusTvSeries(1);
       // assert
-      expect(provider.isAddedToWatchlist, true);
+      expect(provider.isAddedToWatchlistTvSeries, true);
     });
 
     test('should execute save watchlist when function called', () async {
@@ -214,8 +214,8 @@ void main() {
       await provider.addWatchlistTvSeries(testTvSeriesDetail);
       // assert
       verify(mockGetWatchlistStatusTv.execute(testTvSeriesDetail.id));
-      expect(provider.isAddedToWatchlist, true);
-      expect(provider.watchlistMessage, 'Added to Watchlist');
+      expect(provider.isAddedToWatchlistTvSeries, true);
+      expect(provider.watchlistMessageTvSeries, 'Added to Watchlist');
       expect(listenerCallCount, 1);
     });
 
@@ -230,7 +230,7 @@ void main() {
       // act
       await provider.addWatchlistTvSeries(testTvSeriesDetail);
       // assert
-      expect(provider.watchlistMessage, 'Failed');
+      expect(provider.watchlistMessageTvSeries, 'Failed');
       expect(listenerCallCount, 1);
     });
   });
@@ -247,7 +247,7 @@ void main() {
       // act
       await provider.fetchTvSeriesDetail(tId);
       // assert
-      expect(provider.tvState, RequestState.Error);
+      expect(provider.tvState, RequestState.errorState);
       expect(provider.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });

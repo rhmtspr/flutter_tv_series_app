@@ -60,7 +60,7 @@ class MockTopRatedMoviesNotifier extends _i1.Mock
   _i4.RequestState get state =>
       (super.noSuchMethod(
             Invocation.getter(#state),
-            returnValue: _i4.RequestState.Empty,
+            returnValue: _i4.RequestState.emptyState,
           )
           as _i4.RequestState);
 

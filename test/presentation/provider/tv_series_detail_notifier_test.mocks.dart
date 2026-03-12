@@ -105,7 +105,7 @@ class MockGetTvSeriesRecommendations extends _i1.Mock
           as _i2.TvSeriesRepository);
 
   @override
-  _i5.Future<_i3.Either<_i6.Failure, List<_i9.TvSeries>>> execute(dynamic id) =>
+  _i5.Future<_i3.Either<_i6.Failure, List<_i9.TvSeries>>> execute(int? id) =>
       (super.noSuchMethod(
             Invocation.method(#execute, [id]),
             returnValue:

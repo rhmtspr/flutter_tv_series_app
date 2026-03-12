@@ -54,7 +54,7 @@ void main() {
 
   group('now playing movies', () {
     test('initialState should be Empty', () {
-      expect(provider.nowPlayingState, equals(RequestState.Empty));
+      expect(provider.nowPlayingState, equals(RequestState.emptyState));
     });
 
     test('should get data from the usecase', () async {
@@ -76,7 +76,7 @@ void main() {
       // act
       provider.fetchNowPlayingMovies();
       // assert
-      expect(provider.nowPlayingState, RequestState.Loading);
+      expect(provider.nowPlayingState, RequestState.loadingState);
     });
 
     test('should change movies when data is gotten successfully', () async {
@@ -87,7 +87,7 @@ void main() {
       // act
       await provider.fetchNowPlayingMovies();
       // assert
-      expect(provider.nowPlayingState, RequestState.Loaded);
+      expect(provider.nowPlayingState, RequestState.loadedState);
       expect(provider.nowPlayingMovies, tMovieList);
       expect(listenerCallCount, 2);
     });
@@ -100,7 +100,7 @@ void main() {
       // act
       await provider.fetchNowPlayingMovies();
       // assert
-      expect(provider.nowPlayingState, RequestState.Error);
+      expect(provider.nowPlayingState, RequestState.errorState);
       expect(provider.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });
@@ -115,8 +115,7 @@ void main() {
       // act
       provider.fetchPopularMovies();
       // assert
-      expect(provider.popularMoviesState, RequestState.Loading);
-      // verify(provider.setState(RequestState.Loading));
+      expect(provider.popularMoviesState, RequestState.loadingState);
     });
 
     test(
@@ -129,7 +128,7 @@ void main() {
         // act
         await provider.fetchPopularMovies();
         // assert
-        expect(provider.popularMoviesState, RequestState.Loaded);
+        expect(provider.popularMoviesState, RequestState.loadedState);
         expect(provider.popularMovies, tMovieList);
         expect(listenerCallCount, 2);
       },
@@ -143,7 +142,7 @@ void main() {
       // act
       await provider.fetchPopularMovies();
       // assert
-      expect(provider.popularMoviesState, RequestState.Error);
+      expect(provider.popularMoviesState, RequestState.errorState);
       expect(provider.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });
@@ -158,7 +157,7 @@ void main() {
       // act
       provider.fetchTopRatedMovies();
       // assert
-      expect(provider.topRatedMoviesState, RequestState.Loading);
+      expect(provider.topRatedMoviesState, RequestState.loadingState);
     });
 
     test(
@@ -171,7 +170,7 @@ void main() {
         // act
         await provider.fetchTopRatedMovies();
         // assert
-        expect(provider.topRatedMoviesState, RequestState.Loaded);
+        expect(provider.topRatedMoviesState, RequestState.loadedState);
         expect(provider.topRatedMovies, tMovieList);
         expect(listenerCallCount, 2);
       },
@@ -185,7 +184,7 @@ void main() {
       // act
       await provider.fetchTopRatedMovies();
       // assert
-      expect(provider.topRatedMoviesState, RequestState.Error);
+      expect(provider.topRatedMoviesState, RequestState.errorState);
       expect(provider.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });

@@ -150,7 +150,7 @@ class MockMovieDetailNotifier extends _i1.Mock
   _i9.RequestState get movieState =>
       (super.noSuchMethod(
             Invocation.getter(#movieState),
-            returnValue: _i9.RequestState.Empty,
+            returnValue: _i9.RequestState.emptyState,
           )
           as _i9.RequestState);
 
@@ -166,7 +166,7 @@ class MockMovieDetailNotifier extends _i1.Mock
   _i9.RequestState get recommendationState =>
       (super.noSuchMethod(
             Invocation.getter(#recommendationState),
-            returnValue: _i9.RequestState.Empty,
+            returnValue: _i9.RequestState.emptyState,
           )
           as _i9.RequestState);
 
