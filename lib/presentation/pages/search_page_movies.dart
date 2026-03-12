@@ -1,9 +1,8 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tv_series_app/common/constants.dart';
-import 'package:flutter_tv_series_app/common/state_enum.dart';
-import 'package:flutter_tv_series_app/presentation/provider/movie_search_notifier.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/search_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class SearchPageMovies extends StatelessWidget {
   static const routeName = '/search-movies';
@@ -20,11 +19,8 @@ class SearchPageMovies extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
-              onSubmitted: (query) {
-                Provider.of<MovieSearchNotifier>(
-                  context,
-                  listen: false,
-                ).fetchMovieSearch(query);
+              onChanged: (query) {
+                context.read<SearchMoviesBloc>().add(OnQueryChanged(query));
               },
               decoration: InputDecoration(
                 hintText: 'Search title',
@@ -35,22 +31,24 @@ class SearchPageMovies extends StatelessWidget {
             ),
             SizedBox(height: 16),
             Text('Search Result', style: kHeading6),
-            Consumer<MovieSearchNotifier>(
-              builder: (context, data, child) {
-                if (data.state == RequestState.loadingState) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (data.state == RequestState.loadedState) {
-                  final result = data.searchResult;
+            BlocBuilder<SearchMoviesBloc, SearchMoviesState>(
+              builder: (context, state) {
+                if (state is SearchLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (state is SearchHasData) {
+                  final result = state.result;
                   return Expanded(
                     child: ListView.builder(
                       padding: const EdgeInsets.all(8),
                       itemBuilder: (context, index) {
-                        final movie = data.searchResult[index];
+                        final movie = result[index];
                         return MovieCard(movie);
                       },
                       itemCount: result.length,
                     ),
                   );
+                } else if (state is SearchError) {
+                  return Expanded(child: Center(child: Text(state.message)));
                 } else {
                   return Expanded(child: Container());
                 }
