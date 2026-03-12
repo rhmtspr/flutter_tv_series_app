@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tv_series_app/common/constants.dart';
 import 'package:flutter_tv_series_app/common/utils.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/search_movies_bloc.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/search_tv_series_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/pages/about_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/home_tv_series_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/movie_detail_page.dart';
@@ -84,6 +85,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistTvSeriesNotifier>(),
         ),
+
+        BlocProvider(create: (_) => di.locator<SearchTvSeriesBloc>()),
       ],
       child: MaterialApp(
         title: 'Flutter TV Series App',
