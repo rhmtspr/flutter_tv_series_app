@@ -10,10 +10,10 @@ class TopRatedMoviesPage extends StatefulWidget {
   const TopRatedMoviesPage({super.key});
 
   @override
-  _TopRatedMoviesPageState createState() => _TopRatedMoviesPageState();
+  TopRatedMoviesPageState createState() => TopRatedMoviesPageState();
 }
 
-class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
+class TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
   @override
   void initState() {
     super.initState();
@@ -33,9 +33,9 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
         padding: const EdgeInsets.all(8.0),
         child: Consumer<TopRatedMoviesNotifier>(
           builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
+            if (data.state == RequestState.loadingState) {
               return Center(child: CircularProgressIndicator());
-            } else if (data.state == RequestState.Loaded) {
+            } else if (data.state == RequestState.loadedState) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final movie = data.movies[index];
