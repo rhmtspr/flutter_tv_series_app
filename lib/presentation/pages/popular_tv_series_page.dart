@@ -10,10 +10,10 @@ class PopularTvSeriesPage extends StatefulWidget {
   const PopularTvSeriesPage({super.key});
 
   @override
-  _PopularTvSeriesPageState createState() => _PopularTvSeriesPageState();
+  PopularTvSeriesPageState createState() => PopularTvSeriesPageState();
 }
 
-class _PopularTvSeriesPageState extends State<PopularTvSeriesPage> {
+class PopularTvSeriesPageState extends State<PopularTvSeriesPage> {
   @override
   void initState() {
     super.initState();
@@ -33,9 +33,9 @@ class _PopularTvSeriesPageState extends State<PopularTvSeriesPage> {
         padding: const EdgeInsets.all(8.0),
         child: Consumer<PopularTvSeriesNotifier>(
           builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
+            if (data.state == RequestState.loadingState) {
               return Center(child: CircularProgressIndicator());
-            } else if (data.state == RequestState.Loaded) {
+            } else if (data.state == RequestState.loadedState) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final tv = data.tvSeries[index];
