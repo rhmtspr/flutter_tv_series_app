@@ -20,10 +20,10 @@ class HomeMoviePage extends StatefulWidget {
   const HomeMoviePage({super.key});
 
   @override
-  _HomeMoviePageState createState() => _HomeMoviePageState();
+  HomeMoviePageState createState() => HomeMoviePageState();
 }
 
-class _HomeMoviePageState extends State<HomeMoviePage> {
+class HomeMoviePageState extends State<HomeMoviePage> {
   @override
   void initState() {
     super.initState();
@@ -109,9 +109,9 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               Consumer<MovieListNotifier>(
                 builder: (context, data, child) {
                   final state = data.nowPlayingState;
-                  if (state == RequestState.Loading) {
+                  if (state == RequestState.loadingState) {
                     return Center(child: CircularProgressIndicator());
-                  } else if (state == RequestState.Loaded) {
+                  } else if (state == RequestState.loadedState) {
                     return MovieList(data.nowPlayingMovies);
                   } else {
                     return Text('Failed');
@@ -126,9 +126,9 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               Consumer<MovieListNotifier>(
                 builder: (context, data, child) {
                   final state = data.popularMoviesState;
-                  if (state == RequestState.Loading) {
+                  if (state == RequestState.loadingState) {
                     return Center(child: CircularProgressIndicator());
-                  } else if (state == RequestState.Loaded) {
+                  } else if (state == RequestState.loadedState) {
                     return MovieList(data.popularMovies);
                   } else {
                     return Text('Failed');
@@ -143,9 +143,9 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               Consumer<MovieListNotifier>(
                 builder: (context, data, child) {
                   final state = data.topRatedMoviesState;
-                  if (state == RequestState.Loading) {
+                  if (state == RequestState.loadingState) {
                     return Center(child: CircularProgressIndicator());
-                  } else if (state == RequestState.Loaded) {
+                  } else if (state == RequestState.loadedState) {
                     return MovieList(data.topRatedMovies);
                   } else {
                     return Text('Failed');
