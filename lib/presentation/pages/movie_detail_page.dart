@@ -40,9 +40,9 @@ class MovieDetailPageState extends State<MovieDetailPage> {
     return Scaffold(
       body: Consumer<MovieDetailNotifier>(
         builder: (context, provider, child) {
-          if (provider.movieState == RequestState.Loading) {
+          if (provider.movieState == RequestState.loadingState) {
             return Center(child: CircularProgressIndicator());
-          } else if (provider.movieState == RequestState.Loaded) {
+          } else if (provider.movieState == RequestState.loadedState) {
             final movie = provider.movie;
             return SafeArea(
               child: DetailContent(
@@ -176,15 +176,15 @@ class DetailContent extends StatelessWidget {
                             Consumer<MovieDetailNotifier>(
                               builder: (context, data, child) {
                                 if (data.recommendationState ==
-                                    RequestState.Loading) {
+                                    RequestState.loadingState) {
                                   return Center(
                                     child: CircularProgressIndicator(),
                                   );
                                 } else if (data.recommendationState ==
-                                    RequestState.Error) {
+                                    RequestState.errorState) {
                                   return Text(data.message);
                                 } else if (data.recommendationState ==
-                                    RequestState.Loaded) {
+                                    RequestState.loadedState) {
                                   return SizedBox(
                                     height: 150,
                                     child: ListView.builder(
