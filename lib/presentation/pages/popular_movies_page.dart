@@ -33,9 +33,9 @@ class PopularMoviesPageState extends State<PopularMoviesPage> {
         padding: const EdgeInsets.all(8.0),
         child: Consumer<PopularMoviesNotifier>(
           builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
+            if (data.state == RequestState.loadingState) {
               return Center(child: CircularProgressIndicator());
-            } else if (data.state == RequestState.Loaded) {
+            } else if (data.state == RequestState.loadedState) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final movie = data.movies[index];
