@@ -37,9 +37,9 @@ class SearchPageMovies extends StatelessWidget {
             Text('Search Result', style: kHeading6),
             Consumer<MovieSearchNotifier>(
               builder: (context, data, child) {
-                if (data.state == RequestState.Loading) {
+                if (data.state == RequestState.loadingState) {
                   return Center(child: CircularProgressIndicator());
-                } else if (data.state == RequestState.Loaded) {
+                } else if (data.state == RequestState.loadedState) {
                   final result = data.searchResult;
                   return Expanded(
                     child: ListView.builder(
