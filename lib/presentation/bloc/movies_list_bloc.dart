@@ -56,5 +56,24 @@ class MoviesListBloc extends Bloc<MoviesListEvent, MoviesListState> {
         ),
       );
     });
+
+    on<FetchTopRatedMovies>((event, emit) async {
+      emit(state.copyWith(topRatedMoviesState: RequestState.loadingState));
+      final result = await getTopRatedMovies.execute();
+      result.fold(
+        (failure) => emit(
+          state.copyWith(
+            topRatedMoviesState: RequestState.errorState,
+            message: failure.message,
+          ),
+        ),
+        (moviesData) => emit(
+          state.copyWith(
+            topRatedMoviesState: RequestState.loadedState,
+            popularMovies: moviesData,
+          ),
+        ),
+      );
+    });
   }
 }
