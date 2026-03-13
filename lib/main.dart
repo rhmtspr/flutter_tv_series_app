@@ -1,6 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tv_series_app/common/constants.dart';
 import 'package:flutter_tv_series_app/common/utils.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/movies_list_bloc.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/movie_detail_bloc.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/popular_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/search_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/search_tv_series_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/pages/about_page.dart';
@@ -17,7 +21,6 @@ import 'package:flutter_tv_series_app/presentation/pages/tv_series_detail_page.d
 import 'package:flutter_tv_series_app/presentation/pages/watchlist_movies_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/watchlist_tv_series_page.dart';
 import 'package:flutter_tv_series_app/presentation/provider/movie_detail_notifier.dart';
-import 'package:flutter_tv_series_app/presentation/provider/movie_list_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/popular_movies_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/popular_tv_series_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/top_rated_movies_notifier.dart';
@@ -26,7 +29,6 @@ import 'package:flutter_tv_series_app/presentation/provider/tv_series_detail_not
 import 'package:flutter_tv_series_app/presentation/provider/tv_series_list_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_tv_series_app/presentation/provider/watchlist_tv_series_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_tv_series_app/injection.dart' as di;
@@ -46,7 +48,10 @@ class MyApp extends StatelessWidget {
         // ==========================
         // Movies Provider
         // ==========================
-        ChangeNotifierProvider(create: (_) => di.locator<MovieListNotifier>()),
+        BlocProvider(create: (_) => di.locator<MoviesListBloc>()),
+        BlocProvider(create: (_) => di.locator<PopularMoviesBloc>()),
+        BlocProvider(create: (_) => di.locator<SearchMoviesBloc>()),
+
         ChangeNotifierProvider(
           create: (_) => di.locator<MovieDetailNotifier>(),
         ),
@@ -62,8 +67,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistMovieNotifier>(),
         ),
-
-        BlocProvider(create: (_) => di.locator<SearchMoviesBloc>()),
 
         // ==========================
         // Tv Series Provider
