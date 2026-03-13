@@ -154,7 +154,7 @@ void main() {
         const MoviesListState(topRatedMoviesState: RequestState.loadingState),
         MoviesListState(
           topRatedMoviesState: RequestState.loadedState,
-          popularMovies: tMovieList,
+          topRatedMovies: tMovieList,
         ),
       ],
       verify: (bloc) {
