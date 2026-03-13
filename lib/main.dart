@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tv_series_app/common/constants.dart';
 import 'package:flutter_tv_series_app/common/utils.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/movies_list_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/movie_detail_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/popular_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/search_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/search_tv_series_bloc.dart';
