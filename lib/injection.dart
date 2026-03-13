@@ -30,6 +30,7 @@ import 'package:flutter_tv_series_app/domain/usecases/search_movies.dart';
 import 'package:flutter_tv_series_app/domain/usecases/search_tv_series.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/movies_list_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/movie_detail_bloc.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/popular_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/search_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/provider/movie_detail_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/movie_list_notifier.dart';
@@ -76,6 +77,7 @@ void init() {
     () => WatchlistMovieNotifier(getWatchlistMovies: locator()),
   );
 
+  locator.registerFactory(() => PopularMoviesBloc(locator()));
   locator.registerFactory(() => SearchMoviesBloc(locator()));
 
   // Movies Use Cases
