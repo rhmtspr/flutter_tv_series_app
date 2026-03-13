@@ -28,11 +28,12 @@ import 'package:flutter_tv_series_app/domain/usecases/save_watchlist_movie.dart'
 import 'package:flutter_tv_series_app/domain/usecases/save_watchlist_tv_series.dart';
 import 'package:flutter_tv_series_app/domain/usecases/search_movies.dart';
 import 'package:flutter_tv_series_app/domain/usecases/search_tv_series.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/movies_detail_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/movies_list_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/popular_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/search_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/top_rated_movies_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/provider/movie_detail_notifier.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/watchlist_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/provider/popular_tv_series_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/top_rated_tv_series.dart';
@@ -57,7 +58,7 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => MovieDetailNotifier(
+    () => MovieDetailBloc(
       getMovieDetail: locator(),
       getMovieRecommendations: locator(),
       getWatchListStatusMovie: locator(),
@@ -65,6 +66,8 @@ void init() {
       removeWatchlistMovie: locator(),
     ),
   );
+
+  locator.registerFactory(() => WatchlistMoviesBloc(locator()));
 
   locator.registerFactory(
     () => TopRatedMoviesNotifier(getTopRatedMovies: locator()),
