@@ -42,7 +42,7 @@ void main() {
     voteCount: 13507,
   );
   final tTvSeriesList = <TvSeries>[tTvSeriesModel];
-  final tQuery = 'spiderman';
+  final tQuery = 'breaking bad';
 
   group('search TV Series', () {
     test('should change state to loading when usecase is called', () async {

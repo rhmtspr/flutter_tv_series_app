@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:flutter_tv_series_app/data/models/movie_table.dart';
+import 'package:flutter_tv_series_app/data/models/movies_table.dart';
 import 'package:flutter_tv_series_app/data/models/tv_series_table.dart';
 import 'package:sqflite/sqflite.dart';
 

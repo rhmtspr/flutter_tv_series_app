@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tv_series_app/domain/entities/movie.dart';
+import 'package:flutter_tv_series_app/domain/entities/movies.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/popular_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/pages/popular_movies_page.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_tv_series_app/domain/entities/movie.dart';
-import 'package:flutter_tv_series_app/domain/entities/movie_detail.dart';
+import 'package:flutter_tv_series_app/domain/entities/movies.dart';
+import 'package:flutter_tv_series_app/domain/entities/movies_detail.dart';
 import 'package:flutter_tv_series_app/common/failure.dart';
 
 abstract class MovieRepository {

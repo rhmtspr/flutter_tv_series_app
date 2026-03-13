@@ -1,4 +1,4 @@
-import 'package:flutter_tv_series_app/data/models/movie_model.dart';
+import 'package:flutter_tv_series_app/data/models/movies_model.dart';
 import 'package:equatable/equatable.dart';
 
 class MovieResponse extends Equatable {

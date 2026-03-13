@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tv_series_app/common/constants.dart';
-import 'package:flutter_tv_series_app/domain/entities/movie.dart';
+import 'package:flutter_tv_series_app/domain/entities/movies.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/movies_list_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/pages/about_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/home_tv_series_page.dart';

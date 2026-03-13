@@ -2,12 +2,12 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_tv_series_app/common/network_info.dart';
-import 'package:flutter_tv_series_app/data/datasources/movie_local_data_source.dart';
-import 'package:flutter_tv_series_app/data/datasources/movie_remote_data_source.dart';
-import 'package:flutter_tv_series_app/data/models/movie_table.dart';
-import 'package:flutter_tv_series_app/domain/entities/movie.dart';
-import 'package:flutter_tv_series_app/domain/entities/movie_detail.dart';
-import 'package:flutter_tv_series_app/domain/repositories/movie_repository.dart';
+import 'package:flutter_tv_series_app/data/datasources/movies_local_data_source.dart';
+import 'package:flutter_tv_series_app/data/datasources/movies_remote_data_source.dart';
+import 'package:flutter_tv_series_app/data/models/movies_table.dart';
+import 'package:flutter_tv_series_app/domain/entities/movies.dart';
+import 'package:flutter_tv_series_app/domain/entities/movies_detail.dart';
+import 'package:flutter_tv_series_app/domain/repositories/movies_repository.dart';
 import 'package:flutter_tv_series_app/common/exception.dart';
 import 'package:flutter_tv_series_app/common/failure.dart';
 

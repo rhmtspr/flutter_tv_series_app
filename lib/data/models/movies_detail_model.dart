@@ -1,5 +1,5 @@
 import 'package:flutter_tv_series_app/data/models/genre_model.dart';
-import 'package:flutter_tv_series_app/domain/entities/movie_detail.dart';
+import 'package:flutter_tv_series_app/domain/entities/movies_detail.dart';
 import 'package:equatable/equatable.dart';
 
 class MovieDetailResponse extends Equatable {

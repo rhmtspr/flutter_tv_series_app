@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_tv_series_app/data/models/movie_model.dart';
-import 'package:flutter_tv_series_app/domain/entities/movie.dart';
+import 'package:flutter_tv_series_app/data/models/movies_model.dart';
+import 'package:flutter_tv_series_app/domain/entities/movies.dart';
 
 void main() {
   final tMovieModel = MovieModel(

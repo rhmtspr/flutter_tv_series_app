@@ -1,20 +1,20 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_tv_series_app/common/failure.dart';
 import 'package:flutter_tv_series_app/common/state_enum.dart';
-import 'package:flutter_tv_series_app/domain/entities/movie.dart';
-import 'package:flutter_tv_series_app/domain/usecases/get_movie_detail.dart';
-import 'package:flutter_tv_series_app/domain/usecases/get_movie_recommendations.dart';
+import 'package:flutter_tv_series_app/domain/entities/movies.dart';
+import 'package:flutter_tv_series_app/domain/usecases/get_movies_detail.dart';
+import 'package:flutter_tv_series_app/domain/usecases/get_movies_recommendations.dart';
 import 'package:flutter_tv_series_app/domain/usecases/get_watchlist_status_movie.dart';
 import 'package:flutter_tv_series_app/domain/usecases/remove_watchlist.dart';
 import 'package:flutter_tv_series_app/domain/usecases/save_watchlist_movie.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/movie_detail_bloc.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/movies_detail_bloc.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../dummy_data/dummy_objects.dart';
-import 'movie_detail_bloc_test.mocks.dart';
+import 'movies_detail_bloc_test.mocks.dart';
 
 @GenerateMocks([
   GetMovieDetail,
@@ -27,20 +27,20 @@ void main() {
   late MovieDetailBloc movieDetailBloc;
   late MockGetMovieDetail mockGetMovieDetail;
   late MockGetMovieRecommendations mockGetMovieRecommendations;
-  late MockGetWatchListStatusMovie mockGetWatchlistStatusMovie;
+  late MockGetWatchListStatusMovie mockGetWatchListStatusMovie;
   late MockSaveWatchlistMovie mockSaveWatchlistMovie;
   late MockRemoveWatchlistMovie mockRemoveWatchlistMovie;
 
   setUp(() {
     mockGetMovieDetail = MockGetMovieDetail();
     mockGetMovieRecommendations = MockGetMovieRecommendations();
-    mockGetWatchlistStatusMovie = MockGetWatchListStatusMovie();
+    mockGetWatchListStatusMovie = MockGetWatchListStatusMovie();
     mockSaveWatchlistMovie = MockSaveWatchlistMovie();
     mockRemoveWatchlistMovie = MockRemoveWatchlistMovie();
     movieDetailBloc = MovieDetailBloc(
       getMovieDetail: mockGetMovieDetail,
       getMovieRecommendations: mockGetMovieRecommendations,
-      getWatchListStatusMovie: mockGetWatchlistStatusMovie,
+      getWatchListStatusMovie: mockGetWatchListStatusMovie,
       saveWatchlistMovie: mockSaveWatchlistMovie,
       removeWatchlistMovie: mockRemoveWatchlistMovie,
     );
@@ -63,10 +63,9 @@ void main() {
     voteAverage: 1,
     voteCount: 1,
   );
-
   final tMovies = <Movie>[tMovie];
 
-  void _arrangeUsecase() {
+  void arrangeUsecase() {
     when(
       mockGetMovieDetail.execute(tId),
     ).thenAnswer((_) async => Right(testMovieDetail));
@@ -74,7 +73,7 @@ void main() {
       mockGetMovieRecommendations.execute(tId),
     ).thenAnswer((_) async => Right(tMovies));
     when(
-      mockGetWatchlistStatusMovie.execute(tId),
+      mockGetWatchListStatusMovie.execute(tId),
     ).thenAnswer((_) async => false);
   }
 
@@ -86,7 +85,7 @@ void main() {
     blocTest<MovieDetailBloc, MovieDetailState>(
       'Should emit [Loading, Loaded] when data is gotten successfully',
       build: () {
-        _arrangeUsecase();
+        arrangeUsecase();
         return movieDetailBloc;
       },
       act: (bloc) => bloc.add(FetchMovieDetail(tId)),
@@ -100,10 +99,10 @@ void main() {
           isAddedToWatchlist: false,
         ),
       ],
-      verify: (_) {
+      verify: (bloc) {
         verify(mockGetMovieDetail.execute(tId));
         verify(mockGetMovieRecommendations.execute(tId));
-        verify(mockGetWatchlistStatusMovie.execute(tId));
+        verify(mockGetWatchListStatusMovie.execute(tId));
       },
     );
 
@@ -117,7 +116,7 @@ void main() {
           mockGetMovieRecommendations.execute(tId),
         ).thenAnswer((_) async => Right(tMovies));
         when(
-          mockGetWatchlistStatusMovie.execute(tId),
+          mockGetWatchListStatusMovie.execute(tId),
         ).thenAnswer((_) async => false);
         return movieDetailBloc;
       },
@@ -129,15 +128,15 @@ void main() {
           message: 'Server Failure',
         ),
       ],
-      verify: (_) {
+      verify: (bloc) {
         verify(mockGetMovieDetail.execute(tId));
         verify(mockGetMovieRecommendations.execute(tId));
-        verify(mockGetWatchlistStatusMovie.execute(tId));
+        verify(mockGetWatchListStatusMovie.execute(tId));
       },
     );
 
     blocTest<MovieDetailBloc, MovieDetailState>(
-      'Should emit [Loading, Loaded with Error Recommendation] when get recommendation is unsuccessful',
+      'Should emit [Loading, Loaded] when get recommendation is unsuccessful',
       build: () {
         when(
           mockGetMovieDetail.execute(tId),
@@ -146,7 +145,7 @@ void main() {
           mockGetMovieRecommendations.execute(tId),
         ).thenAnswer((_) async => Left(ServerFailure('Server Failure')));
         when(
-          mockGetWatchlistStatusMovie.execute(tId),
+          mockGetWatchListStatusMovie.execute(tId),
         ).thenAnswer((_) async => false);
         return movieDetailBloc;
       },
@@ -161,23 +160,23 @@ void main() {
           isAddedToWatchlist: false,
         ),
       ],
-      verify: (_) {
+      verify: (bloc) {
         verify(mockGetMovieDetail.execute(tId));
         verify(mockGetMovieRecommendations.execute(tId));
-        verify(mockGetWatchlistStatusMovie.execute(tId));
+        verify(mockGetWatchListStatusMovie.execute(tId));
       },
     );
   });
 
   group('Watchlist', () {
     blocTest<MovieDetailBloc, MovieDetailState>(
-      'should emit [isAddedToWatchlist: true] when add watchlist is success',
+      'should emit [watchlistMessage, isAddedToWatchlist] when add watchlist is success',
       build: () {
         when(
           mockSaveWatchlistMovie.execute(testMovieDetail),
         ).thenAnswer((_) async => Right('Added to Watchlist'));
         when(
-          mockGetWatchlistStatusMovie.execute(testMovieDetail.id),
+          mockGetWatchListStatusMovie.execute(testMovieDetail.id),
         ).thenAnswer((_) async => true);
         return movieDetailBloc;
       },
@@ -189,9 +188,9 @@ void main() {
           isAddedToWatchlist: true,
         ),
       ],
-      verify: (_) {
+      verify: (bloc) {
         verify(mockSaveWatchlistMovie.execute(testMovieDetail));
-        verify(mockGetWatchlistStatusMovie.execute(testMovieDetail.id));
+        verify(mockGetWatchListStatusMovie.execute(testMovieDetail.id));
       },
     );
 
@@ -202,7 +201,7 @@ void main() {
           mockSaveWatchlistMovie.execute(testMovieDetail),
         ).thenAnswer((_) async => Left(DatabaseFailure('Failed')));
         when(
-          mockGetWatchlistStatusMovie.execute(testMovieDetail.id),
+          mockGetWatchListStatusMovie.execute(testMovieDetail.id),
         ).thenAnswer((_) async => false);
         return movieDetailBloc;
       },
@@ -214,20 +213,20 @@ void main() {
           isAddedToWatchlist: false,
         ),
       ],
-      verify: (_) {
+      verify: (bloc) {
         verify(mockSaveWatchlistMovie.execute(testMovieDetail));
-        verify(mockGetWatchlistStatusMovie.execute(testMovieDetail.id));
+        verify(mockGetWatchListStatusMovie.execute(testMovieDetail.id));
       },
     );
 
     blocTest<MovieDetailBloc, MovieDetailState>(
-      'should emit [isAddedToWatchlist: false] when remove watchlist is success',
+      'should emit [watchlistMessage, isAddedToWatchlist] when remove watchlist is success',
       build: () {
         when(
           mockRemoveWatchlistMovie.execute(testMovieDetail),
         ).thenAnswer((_) async => Right('Removed from Watchlist'));
         when(
-          mockGetWatchlistStatusMovie.execute(testMovieDetail.id),
+          mockGetWatchListStatusMovie.execute(testMovieDetail.id),
         ).thenAnswer((_) async => false);
         return movieDetailBloc;
       },
@@ -239,9 +238,9 @@ void main() {
           isAddedToWatchlist: false,
         ),
       ],
-      verify: (_) {
+      verify: (bloc) {
         verify(mockRemoveWatchlistMovie.execute(testMovieDetail));
-        verify(mockGetWatchlistStatusMovie.execute(testMovieDetail.id));
+        verify(mockGetWatchListStatusMovie.execute(testMovieDetail.id));
       },
     );
 
@@ -252,7 +251,7 @@ void main() {
           mockRemoveWatchlistMovie.execute(testMovieDetail),
         ).thenAnswer((_) async => Left(DatabaseFailure('Failed')));
         when(
-          mockGetWatchlistStatusMovie.execute(testMovieDetail.id),
+          mockGetWatchListStatusMovie.execute(testMovieDetail.id),
         ).thenAnswer((_) async => true);
         return movieDetailBloc;
       },
@@ -264,9 +263,9 @@ void main() {
           isAddedToWatchlist: true,
         ),
       ],
-      verify: (_) {
+      verify: (bloc) {
         verify(mockRemoveWatchlistMovie.execute(testMovieDetail));
-        verify(mockGetWatchlistStatusMovie.execute(testMovieDetail.id));
+        verify(mockGetWatchListStatusMovie.execute(testMovieDetail.id));
       },
     );
   });

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_tv_series_app/common/state_enum.dart';
-import 'package:flutter_tv_series_app/domain/entities/movie.dart';
+import 'package:flutter_tv_series_app/domain/entities/movies.dart';
 import 'package:flutter_tv_series_app/domain/usecases/get_now_playing_movies.dart';
 import 'package:flutter_tv_series_app/domain/usecases/get_popular_movies.dart';
 import 'package:flutter_tv_series_app/domain/usecases/get_top_rated_movies.dart';

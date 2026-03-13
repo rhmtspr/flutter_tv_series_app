@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_tv_series_app/domain/entities/movie.dart';
+import 'package:flutter_tv_series_app/domain/entities/movies.dart';
 import 'package:flutter_tv_series_app/domain/usecases/get_now_playing_movies.dart';
 import 'package:flutter_tv_series_app/common/failure.dart';
 import 'package:flutter_tv_series_app/domain/usecases/get_popular_movies.dart';

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter_tv_series_app/data/datasources/movie_remote_data_source.dart';
-import 'package:flutter_tv_series_app/data/models/movie_detail_model.dart';
-import 'package:flutter_tv_series_app/data/models/movie_response.dart';
+import 'package:flutter_tv_series_app/data/datasources/movies_remote_data_source.dart';
+import 'package:flutter_tv_series_app/data/models/movies_detail_model.dart';
+import 'package:flutter_tv_series_app/data/models/movies_response.dart';
 import 'package:flutter_tv_series_app/common/exception.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
