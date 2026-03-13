@@ -6,6 +6,7 @@ import 'package:flutter_tv_series_app/presentation/bloc/movies_list_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/popular_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/search_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/search_tv_series_bloc.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/top_rated_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/pages/about_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/home_tv_series_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/movie_detail_page.dart';
@@ -20,9 +21,7 @@ import 'package:flutter_tv_series_app/presentation/pages/tv_series_detail_page.d
 import 'package:flutter_tv_series_app/presentation/pages/watchlist_movies_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/watchlist_tv_series_page.dart';
 import 'package:flutter_tv_series_app/presentation/provider/movie_detail_notifier.dart';
-import 'package:flutter_tv_series_app/presentation/provider/popular_movies_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/popular_tv_series_notifier.dart';
-import 'package:flutter_tv_series_app/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/top_rated_tv_series.dart';
 import 'package:flutter_tv_series_app/presentation/provider/tv_series_detail_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/tv_series_list_notifier.dart';
@@ -49,19 +48,11 @@ class MyApp extends StatelessWidget {
         // ==========================
         BlocProvider(create: (_) => di.locator<MoviesListBloc>()),
         BlocProvider(create: (_) => di.locator<PopularMoviesBloc>()),
+        BlocProvider(create: (_) => di.locator<TopRatedMoviesBloc>()),
         BlocProvider(create: (_) => di.locator<SearchMoviesBloc>()),
 
         ChangeNotifierProvider(
           create: (_) => di.locator<MovieDetailNotifier>(),
-        ),
-        // ChangeNotifierProvider(
-        //   create: (_) => di.locator<MovieSearchNotifier>(),
-        // ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TopRatedMoviesNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<PopularMoviesNotifier>(),
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistMovieNotifier>(),
