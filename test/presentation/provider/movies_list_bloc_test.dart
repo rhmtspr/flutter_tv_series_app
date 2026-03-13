@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter_tv_series_app/common/failure.dart';
 import 'package:flutter_tv_series_app/domain/entities/movie.dart';
 import 'package:flutter_tv_series_app/domain/usecases/get_now_playing_movies.dart';
 import 'package:flutter_tv_series_app/domain/usecases/get_popular_movies.dart';
@@ -66,6 +67,27 @@ void main() {
         MoviesListState(
           nowPlayingState: RequestState.loadedState,
           nowPlayingMovies: tMovieList,
+        ),
+      ],
+      verify: (bloc) {
+        verify(mockGetNowPlayingMovies.execute());
+      },
+    );
+
+    blocTest<MoviesListBloc, MoviesListState>(
+      'should emit [Loading, Error] when data is gotten unsuccessfully',
+      build: () {
+        when(
+          mockGetNowPlayingMovies.execute(),
+        ).thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+        return moviesListBloc;
+      },
+      act: (bloc) => bloc.add(FetchNowPlayingMovies()),
+      expect: () => [
+        const MoviesListState(nowPlayingState: RequestState.loadingState),
+        MoviesListState(
+          nowPlayingState: RequestState.errorState,
+          message: 'Server Failure',
         ),
       ],
       verify: (bloc) {
