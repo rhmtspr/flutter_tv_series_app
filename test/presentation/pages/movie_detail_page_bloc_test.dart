@@ -85,21 +85,21 @@ void main() {
 
       when(mockBloc.state).thenReturn(loadedState);
 
-      // Use whenListen to simulate the state change after clicking the button
-      whenListen(
-        mockBloc,
-        Stream.fromIterable([
-          loadedState,
+      // Simulate the state change stream using mockito's `when`
+      when(mockBloc.stream).thenAnswer(
+        (_) => Stream.fromIterable([
           loadedState.copyWith(watchlistMessage: 'Added to Watchlist'),
         ]),
-        initialState: loadedState,
       );
 
       await tester.pumpWidget(makeTestableWidget(MovieDetailPage(id: 1)));
 
       // Act
       await tester.tap(find.byType(FilledButton));
-      await tester.pump(); // Trigger the BlocListener
+      // We use pump() instead of pumpAndSettle() because pumpAndSettle
+      // will time out waiting for the CircularProgressIndicator from
+      // CachedNetworkImage's placeholder to finish its infinite animation.
+      await tester.pump();
 
       // Assert
       expect(find.byType(SnackBar), findsOneWidget);
@@ -120,13 +120,11 @@ void main() {
 
       when(mockBloc.state).thenReturn(loadedState);
 
-      whenListen(
-        mockBloc,
-        Stream.fromIterable([
-          loadedState,
+      // Simulate the state change stream using mockito's `when`
+      when(mockBloc.stream).thenAnswer(
+        (_) => Stream.fromIterable([
           loadedState.copyWith(watchlistMessage: 'Failed'),
         ]),
-        initialState: loadedState,
       );
 
       await tester.pumpWidget(makeTestableWidget(MovieDetailPage(id: 1)));
