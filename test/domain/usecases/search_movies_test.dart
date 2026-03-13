@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_tv_series_app/domain/entities/movie.dart';
+import 'package:flutter_tv_series_app/domain/entities/movies.dart';
 import 'package:flutter_tv_series_app/domain/usecases/search_movies.dart';
 import 'package:mockito/mockito.dart';
 

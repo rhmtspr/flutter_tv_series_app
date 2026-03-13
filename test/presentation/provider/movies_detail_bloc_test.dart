@@ -206,13 +206,7 @@ void main() {
         return movieDetailBloc;
       },
       act: (bloc) => bloc.add(AddToWatchlist(testMovieDetail)),
-      expect: () => [
-        const MovieDetailState(watchlistMessage: 'Failed'),
-        const MovieDetailState(
-          watchlistMessage: 'Failed',
-          isAddedToWatchlist: false,
-        ),
-      ],
+      expect: () => [const MovieDetailState(watchlistMessage: 'Failed')],
       verify: (bloc) {
         verify(mockSaveWatchlistMovie.execute(testMovieDetail));
         verify(mockGetWatchListStatusMovie.execute(testMovieDetail.id));
@@ -233,10 +227,6 @@ void main() {
       act: (bloc) => bloc.add(RemoveFromWatchlist(testMovieDetail)),
       expect: () => [
         const MovieDetailState(watchlistMessage: 'Removed from Watchlist'),
-        const MovieDetailState(
-          watchlistMessage: 'Removed from Watchlist',
-          isAddedToWatchlist: false,
-        ),
       ],
       verify: (bloc) {
         verify(mockRemoveWatchlistMovie.execute(testMovieDetail));
