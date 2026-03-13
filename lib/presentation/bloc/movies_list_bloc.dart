@@ -70,7 +70,7 @@ class MoviesListBloc extends Bloc<MoviesListEvent, MoviesListState> {
         (moviesData) => emit(
           state.copyWith(
             topRatedMoviesState: RequestState.loadedState,
-            popularMovies: moviesData,
+            topRatedMovies: moviesData,
           ),
         ),
       );
