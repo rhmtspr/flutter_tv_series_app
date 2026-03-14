@@ -33,6 +33,7 @@ import 'package:flutter_tv_series_app/presentation/bloc/movies_list_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/popular_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/search_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/top_rated_movies_bloc.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/tv_series_list_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/watchlist_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/provider/popular_tv_series_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/top_rated_movies_notifier.dart';
@@ -114,8 +115,15 @@ void init() {
   // ======================================
 
   // Tv Series Provider
+  // locator.registerFactory(
+  //   () => TvSeriesListNotifier(
+  //     getNowPlayingTvSeries: locator(),
+  //     getPopularTvSeries: locator(),
+  //     getTopRatedTvSeries: locator(),
+  //   ),
+  // );
   locator.registerFactory(
-    () => TvSeriesListNotifier(
+    () => TvSeriesListBloc(
       getNowPlayingTvSeries: locator(),
       getPopularTvSeries: locator(),
       getTopRatedTvSeries: locator(),
