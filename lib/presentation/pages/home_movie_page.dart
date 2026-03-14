@@ -9,6 +9,7 @@ import 'package:flutter_tv_series_app/presentation/pages/movie_detail_page.dart'
 import 'package:flutter_tv_series_app/presentation/pages/popular_movies_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/search_page_movies.dart';
 import 'package:flutter_tv_series_app/presentation/pages/top_rated_movies_page.dart';
+import 'package:flutter_tv_series_app/presentation/pages/watchlist_movies_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/watchlist_tv_series_page.dart';
 import 'package:flutter_tv_series_app/common/state_enum.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +64,13 @@ class HomeMoviePageState extends State<HomeMoviePage> {
                 Navigator.pushNamed(context, HomeTvSeriesPage.routeName);
               },
             ),
-            ListTile(leading: Icon(Icons.save_alt), title: Text('Watchlist')),
+            ListTile(
+              leading: Icon(Icons.save_alt),
+              title: Text('Watchlist Movies'),
+              onTap: () {
+                Navigator.pushNamed(context, WatchlistMoviesPage.routeName);
+              },
+            ),
             ListTile(
               leading: Icon(Icons.save_alt),
               title: Text('Watchlist Tv Series'),
