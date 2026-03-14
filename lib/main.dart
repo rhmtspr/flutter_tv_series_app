@@ -10,8 +10,10 @@ import 'package:flutter_tv_series_app/presentation/bloc/search_movies_bloc.dart'
 import 'package:flutter_tv_series_app/presentation/bloc/search_tv_series_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/top_rated_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/top_rated_tv_series_bloc.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/tv_series_detail_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/tv_series_list_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/watchlist_movies_bloc.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/watchlist_tv_series_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/pages/about_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/home_tv_series_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/movie_detail_page.dart';
@@ -67,16 +69,18 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => di.locator<PopularTvSeriesBloc>()),
         BlocProvider(create: (_) => di.locator<TopRatedTvSeriesBloc>()),
         BlocProvider(create: (_) => di.locator<SearchTvSeriesBloc>()),
+        BlocProvider(create: (_) => di.locator<WatchlistTvSeriesBloc>()),
 
+        BlocProvider(create: (_) => di.locator<TvSeriesDetailBloc>()),
         // ChangeNotifierProvider(
         //   create: (_) => di.locator<TvSeriesListNotifier>(),
+        // // ),
+        // ChangeNotifierProvider(
+        //   create: (_) => di.locator<TvSeriesDetailNotifier>(),
         // ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvSeriesDetailNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TopRatedTvSeriesNotifier>(),
-        ),
+        // ChangeNotifierProvider(
+        //   create: (_) => di.locator<TopRatedTvSeriesNotifier>(),
+        // ),
         // ChangeNotifierProvider(
         //   create: (_) => di.locator<PopularTvSeriesNotifier>(),
         // ),
