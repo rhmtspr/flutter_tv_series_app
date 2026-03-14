@@ -23,9 +23,10 @@ class MovieDetailPageState extends State<MovieDetailPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-      () => context.read<MovieDetailBloc>().add(FetchMovieDetail(widget.id)),
-    );
+    Future.microtask(() {
+      if (!mounted) return;
+      context.read<MovieDetailBloc>().add(FetchMovieDetail(widget.id));
+    });
   }
 
   @override
