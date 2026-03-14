@@ -40,13 +40,6 @@ import 'package:flutter_tv_series_app/presentation/bloc/tv_series_detail_bloc.da
 import 'package:flutter_tv_series_app/presentation/bloc/tv_series_list_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/watchlist_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/watchlist_tv_series_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/provider/popular_tv_series_notifier.dart';
-import 'package:flutter_tv_series_app/presentation/provider/top_rated_movies_notifier.dart';
-import 'package:flutter_tv_series_app/presentation/provider/top_rated_tv_series.dart';
-import 'package:flutter_tv_series_app/presentation/provider/tv_series_detail_notifier.dart';
-import 'package:flutter_tv_series_app/presentation/provider/tv_series_search_notifier.dart';
-import 'package:flutter_tv_series_app/presentation/provider/watchlist_movie_notifier.dart';
-import 'package:flutter_tv_series_app/presentation/provider/watchlist_tv_series_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
