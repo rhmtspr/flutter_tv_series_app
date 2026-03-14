@@ -5,6 +5,7 @@ import 'package:flutter_tv_series_app/common/utils.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/movies_detail_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/movies_list_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/popular_movies_bloc.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/popular_tv_series_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/search_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/search_tv_series_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/top_rated_movies_bloc.dart';
@@ -62,6 +63,8 @@ class MyApp extends StatelessWidget {
         // Tv Series Provider
         // ==========================
         BlocProvider(create: (_) => di.locator<TvSeriesListBloc>()),
+        BlocProvider(create: (_) => di.locator<PopularTvSeriesBloc>()),
+        BlocProvider(create: (_) => di.locator<SearchTvSeriesBloc>()),
 
         // ChangeNotifierProvider(
         //   create: (_) => di.locator<TvSeriesListNotifier>(),
@@ -72,14 +75,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<TopRatedTvSeriesNotifier>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<PopularTvSeriesNotifier>(),
-        ),
+        // ChangeNotifierProvider(
+        //   create: (_) => di.locator<PopularTvSeriesNotifier>(),
+        // ),
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistTvSeriesNotifier>(),
         ),
-
-        BlocProvider(create: (_) => di.locator<SearchTvSeriesBloc>()),
       ],
       child: MaterialApp(
         title: 'Flutter TV Series App',
