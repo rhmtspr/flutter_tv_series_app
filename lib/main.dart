@@ -9,6 +9,7 @@ import 'package:flutter_tv_series_app/presentation/bloc/popular_tv_series_bloc.d
 import 'package:flutter_tv_series_app/presentation/bloc/search_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/search_tv_series_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/top_rated_movies_bloc.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/top_rated_tv_series_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/tv_series_list_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/watchlist_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/pages/about_page.dart';
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
         // ==========================
         BlocProvider(create: (_) => di.locator<TvSeriesListBloc>()),
         BlocProvider(create: (_) => di.locator<PopularTvSeriesBloc>()),
+        BlocProvider(create: (_) => di.locator<TopRatedTvSeriesBloc>()),
         BlocProvider(create: (_) => di.locator<SearchTvSeriesBloc>()),
 
         // ChangeNotifierProvider(
