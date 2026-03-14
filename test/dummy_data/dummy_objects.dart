@@ -116,6 +116,8 @@ final testTvSeriesDetail = TvSeriesDetail(
   genres: [Genre(id: 1, name: 'Action')],
   id: 1,
   name: 'name',
+  numberOfEpisodes: 1,
+  numberOfSeasons: 1,
   overview: 'overview',
   posterPath: 'posterPath',
   voteAverage: 1,
