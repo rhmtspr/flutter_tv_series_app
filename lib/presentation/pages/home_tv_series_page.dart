@@ -13,8 +13,6 @@ import 'package:flutter_tv_series_app/presentation/pages/watchlist_movies_page.d
 import 'package:flutter_tv_series_app/common/state_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tv_series_app/presentation/pages/watchlist_tv_series_page.dart';
-import 'package:flutter_tv_series_app/presentation/provider/tv_series_list_notifier.dart';
-import 'package:provider/provider.dart';
 
 class HomeTvSeriesPage extends StatefulWidget {
   static const routeName = '/home-tv-series';

@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tv_series_app/common/state_enum.dart';
 import 'package:flutter_tv_series_app/common/utils.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/watchlist_movies_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/widgets/movie_card_list.dart';

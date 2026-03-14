@@ -39,7 +39,6 @@ import 'package:flutter_tv_series_app/presentation/provider/popular_tv_series_no
 import 'package:flutter_tv_series_app/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/top_rated_tv_series.dart';
 import 'package:flutter_tv_series_app/presentation/provider/tv_series_detail_notifier.dart';
-import 'package:flutter_tv_series_app/presentation/provider/tv_series_list_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/tv_series_search_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:flutter_tv_series_app/presentation/provider/watchlist_tv_series_notifier.dart';
