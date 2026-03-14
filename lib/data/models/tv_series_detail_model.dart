@@ -125,6 +125,8 @@ class TvSeriesDetailResponse extends Equatable {
       genres: genres.map((genre) => genre.toEntity()).toList(),
       id: id,
       name: name,
+      numberOfEpisodes: numberOfEpisodes,
+      numberOfSeasons: numberOfSeasons,
       overview: overview,
       posterPath: posterPath,
       voteAverage: voteAverage,
