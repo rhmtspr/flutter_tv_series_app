@@ -27,14 +27,13 @@ import 'package:flutter_tv_series_app/presentation/pages/top_rated_tv_series_pag
 import 'package:flutter_tv_series_app/presentation/pages/tv_series_detail_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/watchlist_movies_page.dart';
 import 'package:flutter_tv_series_app/presentation/pages/watchlist_tv_series_page.dart';
-import 'package:flutter_tv_series_app/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_tv_series_app/presentation/provider/watchlist_tv_series_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_tv_series_app/injection.dart' as di;
 
-void main() {
-  di.init();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(MyApp());
 }
 
@@ -55,10 +54,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => di.locator<MovieDetailBloc>()),
         BlocProvider(create: (_) => di.locator<WatchlistMoviesBloc>()),
 
-        ChangeNotifierProvider(
-          create: (_) => di.locator<WatchlistMovieNotifier>(),
-        ),
-
         // ==========================
         // Tv Series Provider
         // ==========================
@@ -66,24 +61,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => di.locator<PopularTvSeriesBloc>()),
         BlocProvider(create: (_) => di.locator<TopRatedTvSeriesBloc>()),
         BlocProvider(create: (_) => di.locator<SearchTvSeriesBloc>()),
-        BlocProvider(create: (_) => di.locator<WatchlistTvSeriesBloc>()),
-
         BlocProvider(create: (_) => di.locator<TvSeriesDetailBloc>()),
-        // ChangeNotifierProvider(
-        //   create: (_) => di.locator<TvSeriesListNotifier>(),
-        // // ),
-        // ChangeNotifierProvider(
-        //   create: (_) => di.locator<TvSeriesDetailNotifier>(),
-        // ),
-        // ChangeNotifierProvider(
-        //   create: (_) => di.locator<TopRatedTvSeriesNotifier>(),
-        // ),
-        // ChangeNotifierProvider(
-        //   create: (_) => di.locator<PopularTvSeriesNotifier>(),
-        // ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<WatchlistTvSeriesNotifier>(),
-        ),
+        BlocProvider(create: (_) => di.locator<WatchlistTvSeriesBloc>()),
       ],
       child: MaterialApp(
         title: 'Flutter TV Series App',
