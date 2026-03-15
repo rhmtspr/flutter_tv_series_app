@@ -165,6 +165,6 @@ Future<void> init() async {
   locator.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(locator()));
 
   // external
-  locator.registerLazySingleton(() => http.Client());
+  // locator.registerLazySingleton(() => http.Client());
   locator.registerLazySingleton(() => DataConnectionChecker());
 }
