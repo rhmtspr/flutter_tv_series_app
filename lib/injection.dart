@@ -1,4 +1,5 @@
 import 'package:flutter_tv_series_app/common/network_info.dart';
+import 'package:flutter_tv_series_app/common/ssl_pinning.dart';
 import 'package:flutter_tv_series_app/data/datasources/db/database_helper.dart';
 import 'package:flutter_tv_series_app/data/datasources/movies_local_data_source.dart';
 import 'package:flutter_tv_series_app/data/datasources/movies_remote_data_source.dart';
@@ -46,7 +47,10 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 
 final locator = GetIt.instance;
 
-void init() {
+Future<void> init() async {
+  final client = await SSLPinning.ioClient;
+  locator.registerLazySingleton<http.Client>(() => client);
+
   // Movies Provider
   locator.registerFactory(
     () => MoviesListBloc(
@@ -66,14 +70,6 @@ void init() {
   );
 
   locator.registerFactory(() => WatchlistMoviesBloc(locator()));
-
-  // locator.registerFactory(
-  //   () => TopRatedMoviesNotifier(getTopRatedMovies: locator()),
-  // );
-  // locator.registerFactory(
-  //   () => WatchlistMovieNotifier(getWatchlistMovies: locator()),
-  // );
-
   locator.registerFactory(() => PopularMoviesBloc(locator()));
   locator.registerFactory(() => TopRatedMoviesBloc(locator()));
   locator.registerFactory(() => SearchMoviesBloc(locator()));
@@ -98,7 +94,6 @@ void init() {
       networkInfo: locator(),
     ),
   );
-
   // Movie Data Sources
   locator.registerLazySingleton<MovieRemoteDataSource>(
     () => MovieRemoteDataSourceImpl(client: locator()),
@@ -111,14 +106,6 @@ void init() {
   // TV SERIES
   // ======================================
 
-  // Tv Series Provider
-  // locator.registerFactory(
-  //   () => TvSeriesListNotifier(
-  //     getNowPlayingTvSeries: locator(),
-  //     getPopularTvSeries: locator(),
-  //     getTopRatedTvSeries: locator(),
-  //   ),
-  // );
   locator.registerFactory(
     () => TvSeriesListBloc(
       getNowPlayingTvSeries: locator(),
@@ -132,15 +119,6 @@ void init() {
   locator.registerFactory(() => SearchTvSeriesBloc(locator()));
   locator.registerFactory(() => WatchlistTvSeriesBloc(locator()));
 
-  // locator.registerFactory(
-  //   () => TvSeriesDetailNotifier(
-  //     getTvSeriesDetail: locator(),
-  //     getTvSeriesRecommendations: locator(),
-  //     getWatchListStatusTv: locator(),
-  //     saveWatchlistTv: locator(),
-  //     removeWatchlistTv: locator(),
-  //   ),
-  // );
   locator.registerFactory(
     () => TvSeriesDetailBloc(
       getTvSeriesDetail: locator(),
@@ -150,17 +128,6 @@ void init() {
       removeWatchlistTv: locator(),
     ),
   );
-
-  // locator.registerFactory(
-  //   () => TvSeriesSearchNotifier(searchTvSeries: locator()),
-  // );
-  // locator.registerFactory(() => PopularTvSeriesNotifier(locator()));
-  // locator.registerFactory(
-  //   () => TopRatedTvSeriesNotifier(getTopRatedTvSeries: locator()),
-  // );
-  // locator.registerFactory(
-  //   () => WatchlistTvSeriesNotifier(getWatchlistTvSeries: locator()),
-  // );
 
   // Tv Series Use Cases
   locator.registerLazySingleton(() => GetNowPlayingTvSeries(locator()));
