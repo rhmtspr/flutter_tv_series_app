@@ -1,7 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tv_series_app/common/constants.dart';
 import 'package:flutter_tv_series_app/common/utils.dart';
+import 'package:flutter_tv_series_app/firebase_options.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/movies_detail_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/movies_list_bloc.dart';
 import 'package:flutter_tv_series_app/presentation/bloc/popular_movies_bloc.dart';
@@ -33,6 +35,7 @@ import 'package:flutter_tv_series_app/injection.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await di.init();
   runApp(MyApp());
 }
@@ -44,9 +47,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        // ==========================
-        // Movies Provider
-        // ==========================
         BlocProvider(create: (_) => di.locator<MoviesListBloc>()),
         BlocProvider(create: (_) => di.locator<PopularMoviesBloc>()),
         BlocProvider(create: (_) => di.locator<TopRatedMoviesBloc>()),
@@ -54,9 +54,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => di.locator<MovieDetailBloc>()),
         BlocProvider(create: (_) => di.locator<WatchlistMoviesBloc>()),
 
-        // ==========================
-        // Tv Series Provider
-        // ==========================
         BlocProvider(create: (_) => di.locator<TvSeriesListBloc>()),
         BlocProvider(create: (_) => di.locator<PopularTvSeriesBloc>()),
         BlocProvider(create: (_) => di.locator<TopRatedTvSeriesBloc>()),
@@ -77,7 +74,6 @@ class MyApp extends StatelessWidget {
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
-            // Movies
             case '/home':
               return MaterialPageRoute(builder: (_) => HomeMoviePage());
             case PopularMoviesPage.routeName:
@@ -96,8 +92,6 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
             case AboutPage.routeName:
               return MaterialPageRoute(builder: (_) => AboutPage());
-
-            // TV Series
             case HomeTvSeriesPage.routeName:
               return MaterialPageRoute(builder: (_) => HomeTvSeriesPage());
             case PopularTvSeriesPage.routeName:
