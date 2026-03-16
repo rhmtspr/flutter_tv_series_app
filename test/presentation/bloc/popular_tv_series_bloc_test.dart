@@ -2,22 +2,22 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_tv_series_app/common/failure.dart';
 import 'package:flutter_tv_series_app/domain/entities/tv_series.dart';
-import 'package:flutter_tv_series_app/domain/usecases/get_top_rated_tv_series.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/top_rated_tv_series_bloc.dart';
+import 'package:flutter_tv_series_app/domain/usecases/get_popular_tv_series.dart';
+import 'package:flutter_tv_series_app/presentation/bloc/popular_tv_series_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'top_rated_tv_series_bloc_test.mocks.dart';
+import '../provider/popular_tv_series_bloc_test.mocks.dart';
 
-@GenerateMocks([GetTopRatedTvSeries])
+@GenerateMocks([GetPopularTvSeries])
 void main() {
-  late MockGetTopRatedTvSeries mockGetTopRatedTvSeries;
-  late TopRatedTvSeriesBloc topRatedTvSeriesBloc;
+  late MockGetPopularTvSeries mockGetPopularTvSeries;
+  late PopularTvSeriesBloc popularTvSeriesBloc;
 
   setUp(() {
-    mockGetTopRatedTvSeries = MockGetTopRatedTvSeries();
-    topRatedTvSeriesBloc = TopRatedTvSeriesBloc(mockGetTopRatedTvSeries);
+    mockGetPopularTvSeries = MockGetPopularTvSeries();
+    popularTvSeriesBloc = PopularTvSeriesBloc(mockGetPopularTvSeries);
   });
 
   final tTvSeries = TvSeries(
@@ -39,42 +39,42 @@ void main() {
   final tTvSeriesList = <TvSeries>[tTvSeries];
 
   test('initial state should be empty', () async {
-    expect(topRatedTvSeriesBloc.state, TopRatedTvSeriesEmpty());
+    expect(popularTvSeriesBloc.state, PopularTvSeriesEmpty());
   });
 
-  blocTest<TopRatedTvSeriesBloc, TopRatedTvSeriesState>(
+  blocTest<PopularTvSeriesBloc, PopularTvSeriesState>(
     'should emit [Loading, Loaded] when data is gotten successfully',
     build: () {
       when(
-        mockGetTopRatedTvSeries.execute(),
+        mockGetPopularTvSeries.execute(),
       ).thenAnswer((_) async => Right(tTvSeriesList));
-      return topRatedTvSeriesBloc;
+      return popularTvSeriesBloc;
     },
-    act: (bloc) => bloc.add(FetchTopRatedTvSeries()),
+    act: (bloc) => bloc.add(FetchPopularTvSeries()),
     expect: () => [
-      TopRatedTvSeriesLoading(),
-      TopRatedTvSeriesLoaded(tTvSeriesList),
+      PopularTvSeriesLoading(),
+      PopularTvSeriesLoaded(tTvSeriesList),
     ],
     verify: (bloc) {
-      verify(mockGetTopRatedTvSeries.execute());
+      verify(mockGetPopularTvSeries.execute());
     },
   );
 
-  blocTest<TopRatedTvSeriesBloc, TopRatedTvSeriesState>(
+  blocTest<PopularTvSeriesBloc, PopularTvSeriesState>(
     'should emit [Loading, Error] when data is gotten unsuccessfully',
     build: () {
       when(
-        mockGetTopRatedTvSeries.execute(),
+        mockGetPopularTvSeries.execute(),
       ).thenAnswer((_) async => Left(ServerFailure('Server Failure')));
-      return topRatedTvSeriesBloc;
+      return popularTvSeriesBloc;
     },
-    act: (bloc) => bloc.add(FetchTopRatedTvSeries()),
+    act: (bloc) => bloc.add(FetchPopularTvSeries()),
     expect: () => [
-      TopRatedTvSeriesLoading(),
-      TopRatedTvSeriesError('Server Failure'),
+      PopularTvSeriesLoading(),
+      PopularTvSeriesError('Server Failure'),
     ],
     verify: (bloc) {
-      verify(mockGetTopRatedTvSeries.execute());
+      verify(mockGetPopularTvSeries.execute());
     },
   );
 }
