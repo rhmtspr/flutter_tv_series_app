@@ -7,9 +7,11 @@ import 'package:http/http.dart' as http;
 
 final locator = GetIt.instance;
 
-void initCoreInjection() async {
+Future<void> initCoreInjection() async {
   final client = await SSLPinning.ioClient;
-  locator.registerLazySingleton<http.Client>(() => client);
+
+  locator.registerSingleton<http.Client>(client);
+
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
   locator.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(locator()));
   locator.registerLazySingleton(() => DataConnectionChecker());
