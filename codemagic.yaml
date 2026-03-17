@@ -1,0 +1,34 @@
+workflows:
+  flutter-modular-ci:
+    name: Flutter Modular CI
+    instance_type: mac_mini_m1
+    max_build_duration: 60
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - name: main  # or 'master'
+    scripts:
+      - name: Get dependencies and run tests for all modules
+        script: |
+          # Find all directories containing a pubspec.yaml and run tests
+          find . -name "pubspec.yaml" -not -path "**/.*" | while read file; do
+            dir=$(dirname "$file")
+            echo "------------------------------------------------"
+            echo "Processing module in: $dir"
+            echo "------------------------------------------------"
+            cd "$dir"
+            flutter pub get
+            
+            # Check if a test folder exists before running tests
+            if [ -d "test" ]; then
+              flutter test
+            else
+              echo "No tests found in $dir, skipping..."
+            fi
+            
+            # Go back to root for the next iteration
+            cd - > /dev/null
+          done
+    artifacts:
+      - flutter_drive.log # Optional: for logs
