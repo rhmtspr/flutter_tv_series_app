@@ -1,42 +1,50 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tv_series_app/common/constants.dart';
-import 'package:flutter_tv_series_app/common/utils.dart';
-import 'package:flutter_tv_series_app/firebase_options.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/movies_detail_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/movies_list_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/popular_movies_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/popular_tv_series_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/search_movies_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/search_tv_series_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/top_rated_movies_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/top_rated_tv_series_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/tv_series_detail_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/tv_series_list_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/watchlist_movies_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/watchlist_tv_series_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/pages/about_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/home_tv_series_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/movie_detail_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/home_movie_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/popular_movies_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/popular_tv_series_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/search_page_movies.dart';
-import 'package:flutter_tv_series_app/presentation/pages/search_page_tv_series.dart';
-import 'package:flutter_tv_series_app/presentation/pages/top_rated_movies_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/top_rated_tv_series_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/tv_series_detail_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/watchlist_movies_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/watchlist_tv_series_page.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_tv_series_app/injection.dart' as di;
+
+import 'package:core/core_injection.dart';
+import 'package:movies/movies_injection.dart';
+import 'package:tv_series/tv_series_injection.dart';
+import 'package:core/common/constants.dart';
+import 'package:core/common/utils.dart';
+
+import 'package:movies/presentation/bloc/movies_detail_bloc.dart';
+import 'package:movies/presentation/bloc/movies_list_bloc.dart';
+import 'package:movies/presentation/bloc/popular_movies_bloc.dart';
+import 'package:movies/presentation/bloc/top_rated_movies_bloc.dart';
+import 'package:movies/presentation/bloc/search_movies_bloc.dart';
+import 'package:movies/presentation/bloc/watchlist_movies_bloc.dart';
+
+import 'package:movies/presentation/pages/home_movie_page.dart';
+import 'package:movies/presentation/pages/movie_detail_page.dart';
+import 'package:movies/presentation/pages/popular_movies_page.dart';
+import 'package:movies/presentation/pages/search_page_movies.dart';
+import 'package:movies/presentation/pages/top_rated_movies_page.dart';
+import 'package:movies/presentation/pages/watchlist_movies_page.dart';
+
+import 'package:tv_series/presentation/bloc/search_tv_series_bloc.dart';
+import 'package:tv_series/presentation/bloc/top_rated_tv_series_bloc.dart';
+import 'package:tv_series/presentation/bloc/tv_series_detail_bloc.dart';
+import 'package:tv_series/presentation/bloc/tv_series_list_bloc.dart';
+import 'package:tv_series/presentation/bloc/watchlist_tv_series_bloc.dart';
+import 'package:tv_series/presentation/bloc/popular_tv_series_bloc.dart';
+
+import 'package:tv_series/presentation/pages/about_page.dart';
+import 'package:tv_series/presentation/pages/home_tv_series_page.dart';
+import 'package:tv_series/presentation/pages/popular_tv_series_page.dart';
+import 'package:tv_series/presentation/pages/search_page_tv_series.dart';
+import 'package:tv_series/presentation/pages/top_rated_tv_series_page.dart';
+import 'package:tv_series/presentation/pages/tv_series_detail_page.dart';
+import 'package:tv_series/presentation/pages/watchlist_tv_series_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await di.init();
+
+  initCoreInjection();
+  initMoviesInjection();
+  initTvSeriesInjection();
+
   runApp(MyApp());
 }
 
@@ -47,19 +55,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        BlocProvider(create: (_) => di.locator<MoviesListBloc>()),
-        BlocProvider(create: (_) => di.locator<PopularMoviesBloc>()),
-        BlocProvider(create: (_) => di.locator<TopRatedMoviesBloc>()),
-        BlocProvider(create: (_) => di.locator<SearchMoviesBloc>()),
-        BlocProvider(create: (_) => di.locator<MovieDetailBloc>()),
-        BlocProvider(create: (_) => di.locator<WatchlistMoviesBloc>()),
+        BlocProvider(create: (_) => locator<MoviesListBloc>()),
+        BlocProvider(create: (_) => locator<PopularMoviesBloc>()),
+        BlocProvider(create: (_) => locator<TopRatedMoviesBloc>()),
+        BlocProvider(create: (_) => locator<SearchMoviesBloc>()),
+        BlocProvider(create: (_) => locator<MovieDetailBloc>()),
+        BlocProvider(create: (_) => locator<WatchlistMoviesBloc>()),
 
-        BlocProvider(create: (_) => di.locator<TvSeriesListBloc>()),
-        BlocProvider(create: (_) => di.locator<PopularTvSeriesBloc>()),
-        BlocProvider(create: (_) => di.locator<TopRatedTvSeriesBloc>()),
-        BlocProvider(create: (_) => di.locator<SearchTvSeriesBloc>()),
-        BlocProvider(create: (_) => di.locator<TvSeriesDetailBloc>()),
-        BlocProvider(create: (_) => di.locator<WatchlistTvSeriesBloc>()),
+        BlocProvider(create: (_) => locator<TvSeriesListBloc>()),
+        BlocProvider(create: (_) => locator<PopularTvSeriesBloc>()),
+        BlocProvider(create: (_) => locator<TopRatedTvSeriesBloc>()),
+        BlocProvider(create: (_) => locator<SearchTvSeriesBloc>()),
+        BlocProvider(create: (_) => locator<TvSeriesDetailBloc>()),
+        BlocProvider(create: (_) => locator<WatchlistTvSeriesBloc>()),
       ],
       child: MaterialApp(
         title: 'Flutter TV Series App',
