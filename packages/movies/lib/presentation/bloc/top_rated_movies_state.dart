@@ -1,5 +1,3 @@
-// d:\computer-science\mobile-projects\flutter\flutter_tv_series_app\lib\presentation\bloc\TopRated_movies_state.dart
-
 part of 'top_rated_movies_bloc.dart';
 
 abstract class TopRatedMoviesState extends Equatable {

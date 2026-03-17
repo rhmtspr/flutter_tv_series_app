@@ -1,14 +1,8 @@
 import 'package:core/common/state_enum.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tv_series_app/common/state_enum.dart';
-import 'package:flutter_tv_series_app/domain/entities/movies.dart';
-import 'package:flutter_tv_series_app/domain/entities/movies_detail.dart';
-import 'package:flutter_tv_series_app/domain/usecases/get_movies_detail.dart';
-import 'package:flutter_tv_series_app/domain/usecases/get_movies_recommendations.dart';
-import 'package:flutter_tv_series_app/domain/usecases/get_watchlist_status_movie.dart';
-import 'package:flutter_tv_series_app/domain/usecases/remove_watchlist.dart';
-import 'package:flutter_tv_series_app/domain/usecases/save_watchlist_movie.dart';
+import 'package:movies/domain/entities/movies.dart';
+import 'package:movies/domain/entities/movies_detail.dart';
 import 'package:movies/domain/usecases/get_movies_detail.dart';
 import 'package:movies/domain/usecases/get_movies_recommendations.dart';
 import 'package:movies/domain/usecases/get_watchlist_status_movie.dart';

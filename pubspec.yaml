@@ -54,6 +54,13 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
+  core:
+    path: packages/core/
+  movies:
+    path: packages/movies/
+  tv_series:
+    path: packages/tv_series/
+
 dev_dependencies:
   mockito: ^5.0.8
   build_runner: ^2.0.4

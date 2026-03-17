@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tv_series_app/domain/entities/movies.dart';
-import 'package:flutter_tv_series_app/domain/usecases/get_top_rated_movies.dart';
+import 'package:movies/domain/entities/movies.dart';
+import 'package:movies/domain/usecases/get_top_rated_movies.dart';
 
 part 'top_rated_movies_event.dart';
 part 'top_rated_movies_state.dart';

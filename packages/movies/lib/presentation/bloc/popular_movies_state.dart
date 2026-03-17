@@ -1,5 +1,3 @@
-// d:\computer-science\mobile-projects\flutter\flutter_tv_series_app\lib\presentation\bloc\popular_movies_state.dart
-
 part of 'popular_movies_bloc.dart';
 
 abstract class PopularMoviesState extends Equatable {
