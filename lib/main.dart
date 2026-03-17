@@ -41,7 +41,7 @@ import 'package:tv_series/presentation/pages/watchlist_tv_series_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  initCoreInjection();
+  await initCoreInjection();
   initMoviesInjection();
   initTvSeriesInjection();
 
