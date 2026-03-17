@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'top_rated_tv_series_page_bloc_test.mocks.dart';
+import 'top_rated_tv_series_page_test.mocks.dart';
 
 @GenerateMocks([TopRatedTvSeriesBloc])
 void main() {

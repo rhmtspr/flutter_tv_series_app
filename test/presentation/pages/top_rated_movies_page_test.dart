@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'top_rated_movies_page_bloc_test.mocks.dart';
+import 'top_rated_movies_page_test.mocks.dart';
 
 @GenerateMocks([TopRatedMoviesBloc])
 void main() {
