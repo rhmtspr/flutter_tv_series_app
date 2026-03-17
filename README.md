@@ -1,3 +1,5 @@
+[![Codemagic build status](https://api.codemagic.io/apps/69b92a0323406f0f59ccc6f8/69b92a0323406f0f59ccc6f7/status_badge.svg)](https://codemagic.io/app/69b92a0323406f0f59ccc6f8/69b92a0323406f0f59ccc6f7/latest_build)
+
 # flutter_tv_series_app
 
 A new Flutter project.
