@@ -1,16 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:core/common/state_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:core/common/state_enum.dart';
+import 'package:core/common/constants.dart';
+
 import 'package:movies/domain/entities/movies.dart';
 import 'package:movies/presentation/bloc/movies_list_bloc.dart';
-import 'package:core/common/constants.dart';
 import 'package:movies/presentation/pages/about_page.dart';
 import 'package:movies/presentation/pages/movie_detail_page.dart';
 import 'package:movies/presentation/pages/popular_movies_page.dart';
 import 'package:movies/presentation/pages/search_page_movies.dart';
 import 'package:movies/presentation/pages/top_rated_movies_page.dart';
 import 'package:movies/presentation/pages/watchlist_movies_page.dart';
+
 import 'package:tv_series/presentation/pages/home_tv_series_page.dart';
 import 'package:tv_series/presentation/pages/watchlist_tv_series_page.dart';
 
