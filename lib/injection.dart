@@ -51,7 +51,6 @@ Future<void> init() async {
   final client = await SSLPinning.ioClient;
   locator.registerLazySingleton<http.Client>(() => client);
 
-  // Movies Provider
   locator.registerFactory(
     () => MoviesListBloc(
       getNowPlayingMovies: locator(),
@@ -74,7 +73,6 @@ Future<void> init() async {
   locator.registerFactory(() => TopRatedMoviesBloc(locator()));
   locator.registerFactory(() => SearchMoviesBloc(locator()));
 
-  // Movies Use Cases
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));
   locator.registerLazySingleton(() => GetPopularMovies(locator()));
   locator.registerLazySingleton(() => GetTopRatedMovies(locator()));
@@ -86,7 +84,6 @@ Future<void> init() async {
   locator.registerLazySingleton(() => RemoveWatchlistMovie(locator()));
   locator.registerLazySingleton(() => GetWatchlistMovies(locator()));
 
-  // Movie Repository
   locator.registerLazySingleton<MovieRepository>(
     () => MovieRepositoryImpl(
       remoteDataSource: locator(),
@@ -94,17 +91,13 @@ Future<void> init() async {
       networkInfo: locator(),
     ),
   );
-  // Movie Data Sources
+
   locator.registerLazySingleton<MovieRemoteDataSource>(
     () => MovieRemoteDataSourceImpl(client: locator()),
   );
   locator.registerLazySingleton<MovieLocalDataSource>(
     () => MovieLocalDataSourceImpl(databaseHelper: locator()),
   );
-
-  // ======================================
-  // TV SERIES
-  // ======================================
 
   locator.registerFactory(
     () => TvSeriesListBloc(
@@ -129,7 +122,6 @@ Future<void> init() async {
     ),
   );
 
-  // Tv Series Use Cases
   locator.registerLazySingleton(() => GetNowPlayingTvSeries(locator()));
   locator.registerLazySingleton(() => GetPopularTvSeries(locator()));
   locator.registerLazySingleton(() => GetTopRatedTvSeries(locator()));
@@ -141,7 +133,6 @@ Future<void> init() async {
   locator.registerLazySingleton(() => RemoveWatchlistTv(locator()));
   locator.registerLazySingleton(() => GetWatchlistTvSeries(locator()));
 
-  // Tv Series Repository
   locator.registerLazySingleton<TvSeriesRepository>(
     () => TvSeriesRepositoryImpl(
       remoteDataSource: locator(),
@@ -150,7 +141,6 @@ Future<void> init() async {
     ),
   );
 
-  // Tv Series Data Sources
   locator.registerLazySingleton<TvSeriesRemoteDataSource>(
     () => TvSeriesRemoteDataSourceImpl(client: locator()),
   );
@@ -158,13 +148,9 @@ Future<void> init() async {
     () => TvSeriesLocalDataSourceImpl(databaseHelper: locator()),
   );
 
-  // helper
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
-  // network info
   locator.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(locator()));
 
-  // external
-  // locator.registerLazySingleton(() => http.Client());
   locator.registerLazySingleton(() => DataConnectionChecker());
 }
