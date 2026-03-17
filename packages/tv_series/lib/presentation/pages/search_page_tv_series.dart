@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tv_series_app/common/constants.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/search_tv_series_bloc.dart';
+import 'package:core/common/constants.dart';
+import 'package:tv_series/presentation/bloc/search_tv_series_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tv_series_app/presentation/widgets/tv_series_card_list.dart';
+import 'package:tv_series/presentation/widgets/tv_series_card_list.dart';
 
 class SearchPageTvSeries extends StatelessWidget {
   static const routeName = '/search-tv-series';

@@ -1,18 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tv_series_app/common/constants.dart';
-import 'package:flutter_tv_series_app/domain/entities/tv_series.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/tv_series_list_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/pages/about_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/home_movie_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/popular_tv_series_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/search_page_tv_series.dart';
-import 'package:flutter_tv_series_app/presentation/pages/top_rated_tv_series_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/tv_series_detail_page.dart';
-import 'package:flutter_tv_series_app/presentation/pages/watchlist_movies_page.dart';
-import 'package:flutter_tv_series_app/common/state_enum.dart';
+import 'package:core/common/constants.dart';
+import 'package:tv_series/domain/entities/tv_series.dart';
+import 'package:tv_series/presentation/bloc/tv_series_list_bloc.dart';
+import 'package:tv_series/presentation/pages/about_page.dart';
+import 'package:movies/presentation/pages/home_movie_page.dart';
+import 'package:tv_series/presentation/pages/popular_tv_series_page.dart';
+import 'package:tv_series/presentation/pages/search_page_tv_series.dart';
+import 'package:tv_series/presentation/pages/top_rated_tv_series_page.dart';
+import 'package:tv_series/presentation/pages/tv_series_detail_page.dart';
+import 'package:movies/presentation/pages/watchlist_movies_page.dart';
+import 'package:core/common/state_enum.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tv_series_app/presentation/pages/watchlist_tv_series_page.dart';
+import 'package:tv_series/presentation/pages/watchlist_tv_series_page.dart';
 
 class HomeTvSeriesPage extends StatefulWidget {
   static const routeName = '/home-tv-series';
@@ -48,8 +48,8 @@ class HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
                 backgroundImage: AssetImage('assets/circle-g.png'),
                 backgroundColor: Colors.grey.shade900,
               ),
-              accountName: Text('flutter_tv_series_app'),
-              accountEmail: Text('flutter_tv_series_app@dicoding.com'),
+              accountName: Text('tv_series'),
+              accountEmail: Text('tv_series@dicoding.com'),
               decoration: BoxDecoration(color: Colors.grey.shade900),
             ),
             ListTile(

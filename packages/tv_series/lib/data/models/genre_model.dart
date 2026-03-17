@@ -1,4 +1,4 @@
-import 'package:flutter_tv_series_app/domain/entities/genre.dart';
+import 'package:tv_series/domain/entities/genre.dart';
 import 'package:equatable/equatable.dart';
 
 class GenreModel extends Equatable {

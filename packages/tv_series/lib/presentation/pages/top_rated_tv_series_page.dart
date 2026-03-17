@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/bloc/top_rated_tv_series_bloc.dart';
-import 'package:flutter_tv_series_app/presentation/widgets/tv_series_card_list.dart';
+import 'package:tv_series/presentation/bloc/top_rated_tv_series_bloc.dart';
+import 'package:tv_series/presentation/widgets/tv_series_card_list.dart';
 import 'package:flutter/material.dart';
 
 class TopRatedTvSeriesPage extends StatefulWidget {

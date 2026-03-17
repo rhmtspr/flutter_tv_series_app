@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tv_series_app/domain/entities/tv_series.dart';
-import 'package:flutter_tv_series_app/domain/usecases/search_tv_series.dart';
+import 'package:tv_series/domain/entities/tv_series.dart';
+import 'package:tv_series/domain/usecases/search_tv_series.dart';
 import 'package:rxdart/rxdart.dart';
 
 part 'search_tv_series_event.dart';

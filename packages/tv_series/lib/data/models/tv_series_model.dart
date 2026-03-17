@@ -1,4 +1,4 @@
-import 'package:flutter_tv_series_app/domain/entities/tv_series.dart';
+import 'package:tv_series/domain/entities/tv_series.dart';
 import 'package:equatable/equatable.dart';
 
 class TvSeriesModel extends Equatable {

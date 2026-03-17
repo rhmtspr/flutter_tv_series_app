@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tv_series_app/common/state_enum.dart';
-import 'package:flutter_tv_series_app/domain/entities/tv_series.dart';
-import 'package:flutter_tv_series_app/domain/entities/tv_series_detail.dart';
-import 'package:flutter_tv_series_app/domain/usecases/get_tv_series_detail.dart';
-import 'package:flutter_tv_series_app/domain/usecases/get_tv_series_recommendations.dart';
-import 'package:flutter_tv_series_app/domain/usecases/get_watchlist_status_tv_series.dart';
-import 'package:flutter_tv_series_app/domain/usecases/remove_watchlist_tv_series.dart';
-import 'package:flutter_tv_series_app/domain/usecases/save_watchlist_tv_series.dart';
+import 'package:core/common/state_enum.dart';
+import 'package:tv_series/domain/entities/tv_series.dart';
+import 'package:tv_series/domain/entities/tv_series_detail.dart';
+import 'package:tv_series/domain/usecases/get_tv_series_detail.dart';
+import 'package:tv_series/domain/usecases/get_tv_series_recommendations.dart';
+import 'package:tv_series/domain/usecases/get_watchlist_status_tv_series.dart';
+import 'package:tv_series/domain/usecases/remove_watchlist_tv_series.dart';
+import 'package:tv_series/domain/usecases/save_watchlist_tv_series.dart';
 
 part 'tv_series_detail_event.dart';
 part 'tv_series_detail_state.dart';

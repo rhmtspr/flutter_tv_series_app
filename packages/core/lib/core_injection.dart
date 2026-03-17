@@ -5,9 +5,9 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
-void initCoreInjection() async {
-  final locator = GetIt.instance;
+final locator = GetIt.instance;
 
+void initCoreInjection() async {
   final client = await SSLPinning.ioClient;
   locator.registerLazySingleton<http.Client>(() => client);
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());

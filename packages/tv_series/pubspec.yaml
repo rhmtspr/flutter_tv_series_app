@@ -14,14 +14,27 @@ dependencies:
 
   flutter_bloc: ^8.0.0
   dartz: ^0.10.1
+  rxdart: ^0.27.1
+  cached_network_image: ^3.4.1
+  flutter_rating_bar: ^4.0.1
+  get_it: ^7.7.0
+  http: ^1.2.2
+  equatable: ^2.0.5
 
   core:
     path: ../core
+
+  movies:
+    path: ../movies
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+
+  mockito: ^5.0.8
+  build_runner: ^2.0.4
+  bloc_test: ^9.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
