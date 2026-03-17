@@ -8,7 +8,7 @@ import 'package:flutter_tv_series_app/presentation/bloc/top_rated_movies_bloc.da
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../provider/top_rated_movies_bloc_test.mocks.dart';
+import '../bloc/top_rated_movies_bloc_test.mocks.dart';
 
 @GenerateMocks([GetTopRatedMovies])
 void main() {

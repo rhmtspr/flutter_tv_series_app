@@ -11,7 +11,7 @@ import 'package:flutter_tv_series_app/presentation/bloc/tv_series_list_bloc.dart
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../provider/tv_series_list_bloc_test.mocks.dart';
+import '../bloc/tv_series_list_bloc_test.mocks.dart';
 
 @GenerateMocks([GetNowPlayingTvSeries, GetPopularTvSeries, GetTopRatedTvSeries])
 void main() {
