@@ -1,13 +1,13 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:core/common/failure.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 
 import 'package:movies/domain/entities/movies.dart';
 import 'package:movies/domain/usecases/get_top_rated_movies.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:movies/presentation/bloc/top_rated_movies_bloc.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
 
 import 'top_rated_movies_bloc_test.mocks.dart';
 
