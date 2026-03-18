@@ -32,9 +32,14 @@ class WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   }
 
   @override
+  void didPopNext() {
+    context.read<WatchlistMoviesBloc>().add(FetchWatchlistMovies());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Watchlist')),
+      appBar: AppBar(title: Text('Watchlist Movies')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<WatchlistMoviesBloc, WatchlistMoviesState>(

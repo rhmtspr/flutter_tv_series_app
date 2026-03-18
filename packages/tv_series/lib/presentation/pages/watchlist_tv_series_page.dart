@@ -32,9 +32,14 @@ class WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage>
   }
 
   @override
+  void didPopNext() {
+    context.read<WatchlistTvSeriesBloc>().add(FetchWatchlistTvSeries());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Watchlist')),
+      appBar: AppBar(title: Text('Watchlist TV Series')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<WatchlistTvSeriesBloc, WatchlistTvSeriesState>(
