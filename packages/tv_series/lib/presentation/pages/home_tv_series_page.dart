@@ -75,7 +75,7 @@ class HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
             ),
             ListTile(
               leading: Icon(Icons.save_alt),
-              title: Text('Watchlist Tv Series'),
+              title: Text('Watchlist TV Series'),
               onTap: () {
                 Navigator.pushNamed(context, WatchlistTvSeriesPage.routeName);
               },
